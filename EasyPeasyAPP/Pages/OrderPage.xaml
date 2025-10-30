@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyPeasyAPP.Pages.OrderPage"
+             BackgroundColor="#1A1A1A"
+             NavigationPage.HasNavigationBar="False">
+
+	<Grid>
+		<!-- Background -->
+		<Image Source="background.png"
+			   Aspect="AspectFill"
+			   HorizontalOptions="Fill"
+			   VerticalOptions="Fill"/>
+
+		<ScrollView>
+			<VerticalStackLayout
+				Padding="25,40"
+				Spacing="35"
+				HorizontalOptions="FillAndExpand"
+				VerticalOptions="Start">
+
+				<!-- === Header (Nazad + PONUDA) === -->
+				<Grid ColumnDefinitions="Auto,*,Auto"
+					  HorizontalOptions="FillAndExpand"
+					  VerticalOptions="Center"
+					  Margin="0,0,0,0">
+
+					<!-- Nazad dugme -->
+					<ImageButton Source="nazad.png"
+								 Grid.Column="0"
+								 WidthRequest="38"
+								 HeightRequest="38"
+								 BackgroundColor="Transparent"
+								 Clicked="OnBackClicked"
+								 HorizontalOptions="Start"
+								 VerticalOptions="Center"/>
+
+					<!-- Centrirani tekst preko cijelog ekrana -->
+					<Label Text="PONUDA"
+						   Grid.Column="0"
+						   Grid.ColumnSpan="3"
+						   HorizontalOptions="Center"
+						   VerticalOptions="Center"
+						   FontFamily="BebasNeue"
+						   FontSize="64"
+						   TextColor="#EFCD5E"
+						   Margin="0,-5,0,0"/>
+
+				</Grid>
+
+				<!-- === EASY BURGERI Button === -->
+				<Border BackgroundColor="#EBC036"
+						HeightRequest="65"
+						StrokeThickness="0"
+						HorizontalOptions="FillAndExpand"
+						Margin="10,0">
+					<Border.StrokeShape>
+						<RoundRectangle CornerRadius="12"/>
+					</Border.StrokeShape>
+					<Border.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnBurgeriClicked"/>
+					</Border.GestureRecognizers>
+
+					<Grid ColumnDefinitions="*,Auto"
+						  Padding="20,0"
+						  VerticalOptions="Center"
+						  HorizontalOptions="FillAndExpand">
+						<Label Text="EASY BURGERI"
+							   Grid.Column="0"
+							   FontFamily="BebasNeue"
+							   FontSize="40"
+							   TextColor="#5B5B59"
+							   VerticalOptions="Center"
+							   HorizontalOptions="Start"
+							   Margin="0,0,15,0"/>
+						<Image Source="burger.png"
+							   Grid.Column="1"
+							   WidthRequest="40"
+							   HeightRequest="40"
+							   VerticalOptions="Center"
+							   HorizontalOptions="End"/>
+					</Grid>
+				</Border>
+
+				<!-- === EASY DOGS Button === -->
+				<Border BackgroundColor="#EBC036"
+						HeightRequest="65"
+						StrokeThickness="0"
+						HorizontalOptions="FillAndExpand"
+						Margin="10,0">
+					<Border.StrokeShape>
+						<RoundRectangle CornerRadius="12"/>
+					</Border.StrokeShape>
+					<Border.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnDogsClicked"/>
+					</Border.GestureRecognizers>
+
+					<Grid ColumnDefinitions="*,Auto"
+						  Padding="20,0"
+						  VerticalOptions="Center"
+						  HorizontalOptions="FillAndExpand">
+						<Label Text="EASY DOGS"
+							   Grid.Column="0"
+							   FontFamily="BebasNeue"
+							   FontSize="40"
+							   TextColor="#5B5B59"
+							   VerticalOptions="Center"
+							   HorizontalOptions="Start"
+							   Margin="0,0,15,0"/>
+						<Image Source="hotdog.png"
+							   Grid.Column="1"
+							   WidthRequest="40"
+							   HeightRequest="40"
+							   VerticalOptions="Center"
+							   HorizontalOptions="End"/>
+					</Grid>
+				</Border>
+
+				<!-- === SENDVIČI Button === -->
+				<Border BackgroundColor="#EBC036"
+						HeightRequest="65"
+						StrokeThickness="0"
+						HorizontalOptions="FillAndExpand"
+						Margin="10,0">
+					<Border.StrokeShape>
+						<RoundRectangle CornerRadius="12"/>
+					</Border.StrokeShape>
+					<Border.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSendviciClicked"/>
+					</Border.GestureRecognizers>
+
+					<Grid ColumnDefinitions="*,Auto"
+						  Padding="20,0"
+						  VerticalOptions="Center"
+						  HorizontalOptions="FillAndExpand">
+						<Label Text="SENDVIČI"
+							   Grid.Column="0"
+							   FontFamily="BebasNeue"
+							   FontSize="40"
+							   TextColor="#5B5B59"
+							   VerticalOptions="Center"
+							   HorizontalOptions="Start"
+							   Margin="0,0,15,0"/>
+						<Image Source="sendvic.png"
+							   Grid.Column="1"
+							   WidthRequest="40"
+							   HeightRequest="40"
+							   VerticalOptions="Center"
+							   HorizontalOptions="End"/>
+					</Grid>
+				</Border>
+
+				<!-- === SOKOVI Button === -->
+				<Border BackgroundColor="#EBC036"
+						HeightRequest="65"
+						StrokeThickness="0"
+						HorizontalOptions="FillAndExpand"
+						Margin="10,0">
+					<Border.StrokeShape>
+						<RoundRectangle CornerRadius="12"/>
+					</Border.StrokeShape>
+					<Border.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSokoviClicked"/>
+					</Border.GestureRecognizers>
+
+					<Grid ColumnDefinitions="*,Auto"
+						  Padding="20,0"
+						  VerticalOptions="Center"
+						  HorizontalOptions="FillAndExpand">
+						<Label Text="SOKOVI"
+							   Grid.Column="0"
+							   FontFamily="BebasNeue"
+							   FontSize="40"
+							   TextColor="#5B5B59"
+							   VerticalOptions="Center"
+							   HorizontalOptions="Start"
+							   Margin="0,0,15,0"/>
+						<Image Source="sokovi.png"
+							   Grid.Column="1"
+							   WidthRequest="40"
+							   HeightRequest="40"
+							   VerticalOptions="Center"
+							   HorizontalOptions="End"/>
+					</Grid>
+				</Border>
+
+				<!-- === PRILOZI Button === -->
+				<Border BackgroundColor="#EBC036"
+						HeightRequest="65"
+						StrokeThickness="0"
+						HorizontalOptions="FillAndExpand"
+						Margin="10,0">
+					<Border.StrokeShape>
+						<RoundRectangle CornerRadius="12"/>
+					</Border.StrokeShape>
+					<Border.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnPriloziClicked"/>
+					</Border.GestureRecognizers>
+
+					<Grid ColumnDefinitions="*,Auto"
+						  Padding="20,0"
+						  VerticalOptions="Center"
+						  HorizontalOptions="FillAndExpand">
+						<Label Text="PRILOZI"
+							   Grid.Column="0"
+							   FontFamily="BebasNeue"
+							   FontSize="40"
+							   TextColor="#5B5B59"
+							   VerticalOptions="Center"
+							   HorizontalOptions="Start"
+							   Margin="0,0,15,0"/>
+						<Image Source="prilozi.png"
+							   Grid.Column="1"
+							   WidthRequest="40"
+							   HeightRequest="40"
+							   VerticalOptions="Center"
+							   HorizontalOptions="End"/>
+					</Grid>
+				</Border>
+
+			</VerticalStackLayout>
+		</ScrollView>
+	</Grid>
+
+</ContentPage>

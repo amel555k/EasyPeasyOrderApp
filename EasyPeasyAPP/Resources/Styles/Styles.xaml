@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Bebas Neue Styles -->
+    <Style x:Key="Header1Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="BebasNeue"/>
+        <Setter Property="FontSize" Value="64"/>
+        <Setter Property="TextColor" Value="{StaticResource AccentGold}"/>
+    </Style>
+
+    <Style x:Key="LabelStyle1" TargetType="Label">
+        <Setter Property="FontFamily" Value="BebasNeue"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="{StaticResource Gray}"/>
+    </Style>
+
+    <Style x:Key="RegularStyle40" TargetType="Label">
+        <Setter Property="FontFamily" Value="BebasNeue"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+    </Style>
+
+    <!-- League Spartan Styles -->
+    <Style x:Key="SmallerTextStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+    </Style>
+
+    <Style x:Key="BiggerTextStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+    </Style>
+
+    <Style x:Key="LabelStyle30" TargetType="Label">
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+    </Style>
+
+    <Style x:Key="LabelExtraBoldStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+    </Style>
+
+    <Style x:Key="ExtraBold30Style" TargetType="Label">
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="30"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="{StaticResource Gray}"/>
+    </Style>
+
+    <!-- Entry Style -->
+    <Style x:Key="InputStyle" TargetType="Entry">
+        <Setter Property="TextColor" Value="{StaticResource TextWhite}"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource Gray}"/>
+        <Setter Property="FontFamily" Value="LeagueSpartan"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="HeightRequest" Value="50"/>
+    </Style>
+
+    <!-- Button Style -->
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource AccentGold}"/>
+        <Setter Property="TextColor" Value="{StaticResource Black}"/>
+        <Setter Property="FontFamily" Value="BebasNeue"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="CornerRadius" Value="15"/>
+        <Setter Property="HeightRequest" Value="60"/>
+    </Style>
+
+    <!-- Border Card Style -->
+    <Style x:Key="CardBorderStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource AccentGold}"/>
+        <Setter Property="StrokeThickness" Value="2"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Padding" Value="15,5"/>
+    </Style>
+
+</ResourceDictionary>

@@ -1,0 +1,19 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+## MAUI
+**/AppPackages/
+**/BundleArtifacts/
+**/*.ipa
+**/*.apk
+**/*.aab
+
+## IDE
+.idea/
+*.swp
+*.swo
+*~

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyPeasyAPP.Pages.AboutPage"
+             BackgroundColor="#1A1A1A"
+             NavigationPage.HasNavigationBar="False">
+
+	
+		<Grid>
+			<Image Source="background.png"
+				   Aspect="AspectFill"
+				   HorizontalOptions="Fill"
+				   VerticalOptions="Fill"/>
+		<VerticalStackLayout
+            Padding="25,40"
+            Spacing="35"
+            HorizontalOptions="Center"
+            VerticalOptions="Start">
+
+			<!-- === Header (Nazad + O NAMA) === -->
+            <Grid ColumnDefinitions="Auto,*,Auto"
+      HorizontalOptions="Fill"
+      VerticalOptions="Center">
+
+                <!-- Nazad dugme -->
+                <ImageButton Source="nazad.png"
+                 Grid.Column="0"
+                 WidthRequest="38"
+                 HeightRequest="38"
+                 BackgroundColor="Transparent"
+                 Clicked="OnBackClicked"
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center"/>
+
+                <!-- Centrirani tekst preko cijelog ekrana -->
+                <Label Text="O NAMA"
+           Grid.Column="0"
+           Grid.ColumnSpan="3"
+           HorizontalOptions="Center"
+           VerticalOptions="Center"
+           FontFamily="BebasNeue"
+           FontSize="64"
+           TextColor="#EFCD5E"
+           Margin="0,-5,0,0"/>
+
+            </Grid>
+
+
+            <!-- === Sekcija 1: Radnja + Tekst === -->
+			<Border Stroke="#EFCD5E"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 8"
+                    BackgroundColor="Transparent"
+                    Padding="0">
+				<VerticalStackLayout Spacing="0">
+
+					<Image Source="radnja.png"
+                           Aspect="AspectFill"
+                           HeightRequest="220"
+                           WidthRequest="320"
+                           HorizontalOptions="Center"/>
+
+					<BoxView HeightRequest="2"
+                             Color="#EFCD5E"
+                             Margin="0"/>
+
+					<Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam upis lectus, maximus nec quam at, bibendum sodales enim. Mauris maximus imperdiet nunc et elementum. Fusce enim nisi, gravida nec tempor vel, gravida eget quam."
+                           Padding="15,10"
+                           FontFamily="LeagueSpartan-Medium"
+                           FontSize="20"
+                           TextColor="#E8E8E6"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Start"
+                           LineBreakMode="WordWrap"/>
+				</VerticalStackLayout>
+			</Border>
+
+
+			<!-- === Sekcija 2: Kontakt + Lokacija === -->
+			<Border Stroke="#EFCD5E"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 8"
+                    BackgroundColor="Transparent"
+                    Padding="0">
+
+				<Grid ColumnDefinitions="*,Auto,*"
+                      RowDefinitions="Auto">
+
+					<!-- Lijevi dio: kontakt info -->
+					<VerticalStackLayout
+                        Grid.Column="0"
+                        Padding="20"
+                        Spacing="12"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+
+						<HorizontalStackLayout Spacing="10">
+							<Image Source="phone.png" WidthRequest="20" HeightRequest="20"/>
+							<Label Text="062/225-883"
+                                   FontFamily="LeagueSpartan-Medium"
+                                   FontSize="18"
+                                   TextColor="#E8E8E6"/>
+						</HorizontalStackLayout>
+
+						<HorizontalStackLayout Spacing="10">
+							<Image Source="mail.png" WidthRequest="20" HeightRequest="20"/>
+							<Label Text="easypeasy@gmail.com"
+                                   FontFamily="LeagueSpartan-Medium"
+                                   FontSize="18"
+                                   TextColor="#E8E8E6"/>
+						</HorizontalStackLayout>
+
+						<HorizontalStackLayout Spacing="10">
+							<Image Source="ig.png" WidthRequest="20" HeightRequest="20"/>
+							<Label Text="@foodcornereasypeasy"
+                                   FontFamily="LeagueSpartan-Medium"
+                                   FontSize="18"
+                                   TextColor="#E8E8E6"/>
+						</HorizontalStackLayout>
+					</VerticalStackLayout>
+
+					<!-- Razdjelna linija -->
+					<BoxView Grid.Column="1"
+                             WidthRequest="2"
+                             Color="#EFCD5E"
+                             VerticalOptions="FillAndExpand"/>
+
+					<!-- Desni dio: lokacija -->
+					<Image Source="lokacija.png"
+                           Grid.Column="2"
+                           HeightRequest="170"
+                           Aspect="AspectFill"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+				</Grid>
+			</Border>
+
+		</VerticalStackLayout>
+		</Grid>
+	
+</ContentPage>

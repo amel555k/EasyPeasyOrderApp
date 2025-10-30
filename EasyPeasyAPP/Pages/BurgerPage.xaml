@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyPeasyAPP.Pages.BurgerPage"
+             BackgroundColor="#1A1A1A"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid>
+        <!-- === Background === -->
+        <Image Source="background.png"
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"/>
+
+        <!-- === Scrollable Main Content === -->
+        <ScrollView x:Name="MainContent">
+            <VerticalStackLayout
+                Padding="25,40"
+                Spacing="25"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+
+                <!-- === Header === -->
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Center">
+                    <Label Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           FontFamily="BebasNeue"
+                           FontSize="64"
+                           TextColor="#EFCD5E"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           Margin="0,-5,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="EASY&#x0a;BURGERI"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+
+                <!-- === Grid 2x2 za prve 4 kartice === -->
+                <Grid RowDefinitions="Auto,Auto"
+                      ColumnDefinitions="*,*"
+                      RowSpacing="20"
+                      ColumnSpacing="15"
+                      HorizontalOptions="FillAndExpand"
+                      Margin="0,10,0,0">
+
+                    <!-- Kartice 1-4 -->
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="BurgerCard1">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="0" Grid.Column="1" x:Name="BurgerCard2">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="0" x:Name="BurgerCard3">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Grid.Column="1" x:Name="BurgerCard4">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <!-- === Kartica 5 (centrirana) === -->
+                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="BurgerCard5">
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                    </Grid.GestureRecognizers>
+                    <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                    <Grid VerticalOptions="End" HeightRequest="65">
+                        <Image Source="kartica.png" Aspect="Fill"/>
+                        <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Grid>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- === DETAIL PANEL === -->
+        <Border x:Name="DetailPanel"
+                BackgroundColor="#EBC036"
+                Stroke="#767674"
+                StrokeThickness="6"
+                VerticalOptions="End"
+                HeightRequest="{OnPlatform Android=280, iOS=260, WinUI=320}"
+                TranslationY="800"
+                IsVisible="False"
+                Margin="0"
+                ZIndex="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30,30,0,0"/>
+            </Border.StrokeShape>
+
+            <ScrollView Padding="20,10,20,30">
+                <VerticalStackLayout x:Name="DetailContent" Spacing="15">
+                    <Label Text="[Detalji burgera dolaze ovdje]"
+                           FontFamily="LeagueSpartan"
+                           FontSize="18"
+                           TextColor="#5B5B59"
+                           HorizontalOptions="Center"
+                           Margin="0,30,0,0"/>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+
+        <!-- === Floating burger iznad panela === -->
+        <Image x:Name="FloatingBurger"
+               Source="burger1.png"
+               Aspect="AspectFill"
+               HeightRequest="180"
+               WidthRequest="180"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               IsVisible="False"
+               ZIndex="5"/>
+
+        <!-- === Back Button === -->
+        <ImageButton x:Name="BackButton"
+                     Source="nazad.png"
+                     WidthRequest="38"
+                     HeightRequest="38"
+                     BackgroundColor="Transparent"
+                     Clicked="OnBackClicked"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Start"
+                     Margin="25,60,0,0"
+                     ZIndex="6"/>
+    </Grid>
+</ContentPage>
