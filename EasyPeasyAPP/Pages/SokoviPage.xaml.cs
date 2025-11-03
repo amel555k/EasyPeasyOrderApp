@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace EasyPeasyAPP.Pages
 {
-    public partial class BurgerPage : ContentPage
+    public partial class SokoviPage : ContentPage
     {
         private bool isDetailVisible = false;
         private double floatingStartY;
 
-        public BurgerPage()
+        public SokoviPage()
         {
             InitializeComponent();
         }
@@ -20,13 +20,30 @@ namespace EasyPeasyAPP.Pages
             base.OnSizeAllocated(width, height);
         }
 
-        private async void OnBurgerClicked(object sender, EventArgs e)
+        private async void OnSokClicked(object sender, EventArgs e)
         {
             if (sender is Grid clickedGrid)
             {
-                var img = clickedGrid.Children.OfType<Image>().FirstOrDefault(i => i.Source.ToString().Contains("burger"));
-                if (img != null)
-                    FloatingBurger.Source = img.Source;
+                // Pronađi prvu sliku koja NIJE kartica.png (to je slika soka)
+                var sokImage = clickedGrid.Children.OfType<Image>()
+                    .FirstOrDefault(i => !i.Source.ToString().Contains("kartica"));
+
+                if (sokImage != null)
+                {
+                    // Postavi istu sliku na FloatingSok
+                    FloatingSok.Source = sokImage.Source;
+
+                    // Opcionalno: ažuriraj naziv soka ako želiš
+                    var label = clickedGrid.Children
+                        .OfType<Grid>()
+                        .SelectMany(g => g.Children.OfType<Label>())
+                        .FirstOrDefault();
+
+                    if (label != null)
+                    {
+                        SokNameLabel.Text = label.Text;
+                    }
+                }
             }
 
             await MainContent.FadeTo(0.3, 300);
@@ -35,6 +52,7 @@ namespace EasyPeasyAPP.Pages
             double panelHeight = DeviceInfo.Platform == DevicePlatform.Android ? 450 :
                                 DeviceInfo.Platform == DevicePlatform.iOS ? 430 : 490;
             double panelTop = screenHeight - panelHeight;
+
             floatingStartY = screenHeight + 100;
             double burgerHeight = 250;
             double targetY = panelTop - (burgerHeight / 2);
@@ -42,12 +60,12 @@ namespace EasyPeasyAPP.Pages
             DetailPanel.IsVisible = true;
             await DetailPanel.TranslateTo(0, 0, 400, Easing.CubicOut);
 
-            FloatingBurger.TranslationY = floatingStartY;
-            FloatingBurger.TranslationX = 0;
-            FloatingBurger.IsVisible = true;
-            FloatingBurger.Opacity = 1;
+            FloatingSok.TranslationY = floatingStartY;
+            FloatingSok.TranslationX = 0;
+            FloatingSok.IsVisible = true;
+            FloatingSok.Opacity = 1;
 
-            await FloatingBurger.TranslateTo(0, targetY, 400, Easing.CubicOut);
+            await FloatingSok.TranslateTo(0, targetY, 400, Easing.CubicOut);
 
             isDetailVisible = true;
         }
@@ -56,8 +74,8 @@ namespace EasyPeasyAPP.Pages
         {
             if (isDetailVisible)
             {
-                await FloatingBurger.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
-                FloatingBurger.IsVisible = false;
+                await FloatingSok.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
+                FloatingSok.IsVisible = false;
 
                 await DetailPanel.TranslateTo(0, 800, 400, Easing.CubicIn);
                 DetailPanel.IsVisible = false;
@@ -84,7 +102,7 @@ namespace EasyPeasyAPP.Pages
 
         private void OnAddToCartClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Korpa", "Burger dodan u korpu!", "OK");
+            DisplayAlert("Korpa", "Sok dodan u korpu!", "OK");
         }
     }
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyPeasyAPP.Pages.Auth.RegisterPage"
-             NavigationPage.HasNavigationBar="False">
+             x:Class="EasyPeasyAPP.Pages.ProfilePage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Transparent">
 
     <Grid>
         <Image Source="background.png" Aspect="AspectFill"/>
@@ -17,7 +18,7 @@
                        HeightRequest="120"
                        Margin="0,0,0,20"/>
 
-                <Label Text="REGISTER"
+                <Label Text="PROFILE"
                        Style="{StaticResource Header1Style}"
                        HorizontalOptions="Center"
                        Margin="0,0,0,30"/>
@@ -43,37 +44,15 @@
                            Style="{StaticResource InputStyle}"/>
                 </Border>
 
-                <!-- Password -->
-                <Border Style="{StaticResource CardBorderStyle}">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10"/>
-                    </Border.StrokeShape>
-                    <Entry x:Name="PasswordEntry"
-                           Placeholder="Password"
-                           IsPassword="True"
-                           Style="{StaticResource InputStyle}"/>
-                </Border>
-
-                <!-- Confirm Password -->
-                <Border Style="{StaticResource CardBorderStyle}">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="10"/>
-                    </Border.StrokeShape>
-                    <Entry x:Name="ConfirmPasswordEntry"
-                           Placeholder="Confirm Password"
-                           IsPassword="True"
-                           Style="{StaticResource InputStyle}"/>
-                </Border>
-
-                <!-- Phone Number -->
+                <!-- Phone -->
                 <Border Style="{StaticResource CardBorderStyle}">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
                     <Entry x:Name="TelefonEntry"
-           Placeholder="Phone Number"
-           Keyboard="Telephone"
-           Style="{StaticResource InputStyle}"/>
+                           Placeholder="Phone Number"
+                           Keyboard="Telephone"
+                           Style="{StaticResource InputStyle}"/>
                 </Border>
 
                 <!-- Address -->
@@ -82,33 +61,14 @@
                         <RoundRectangle CornerRadius="10"/>
                     </Border.StrokeShape>
                     <Entry x:Name="AdresaEntry"
-           Placeholder="Address"
-           Style="{StaticResource InputStyle}"/>
+                           Placeholder="Address"
+                           Style="{StaticResource InputStyle}"/>
                 </Border>
 
-                <!-- Register Button -->
-                <Button Text="REGISTER"
+                <Button Text="SAVE CHANGES"
                         Style="{StaticResource PrimaryButtonStyle}"
-                        Clicked="OnRegisterClicked"
+                        Clicked="OnSaveClicked"
                         Margin="0,10,0,0"/>
-
-                <HorizontalStackLayout HorizontalOptions="Center"
-                                      Spacing="5"
-                                      Margin="0,20,0,0">
-                    <Label Text="Already have an account?"
-                           TextColor="{StaticResource Gray}"
-                           FontFamily="LeagueSpartan"
-                           FontSize="16"/>
-                    <Label Text="Login"
-                           TextColor="{StaticResource AccentGold}"
-                           FontFamily="LeagueSpartan"
-                           FontSize="16"
-                           FontAttributes="Bold">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnLoginTapped"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                </HorizontalStackLayout>
 
                 <Label x:Name="ErrorLabel"
                        TextColor="Red"
@@ -117,7 +77,6 @@
                        HorizontalOptions="Center"
                        IsVisible="False"
                        Margin="0,10,0,0"/>
-
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

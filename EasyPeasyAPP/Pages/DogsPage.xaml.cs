@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace EasyPeasyAPP.Pages
 {
-    public partial class BurgerPage : ContentPage
+    public partial class DogsPage : ContentPage
     {
         private bool isDetailVisible = false;
         private double floatingStartY;
 
-        public BurgerPage()
+        public DogsPage()
         {
             InitializeComponent();
         }
@@ -20,13 +20,13 @@ namespace EasyPeasyAPP.Pages
             base.OnSizeAllocated(width, height);
         }
 
-        private async void OnBurgerClicked(object sender, EventArgs e)
+        private async void OnDogsClicked(object sender, EventArgs e)
         {
             if (sender is Grid clickedGrid)
             {
-                var img = clickedGrid.Children.OfType<Image>().FirstOrDefault(i => i.Source.ToString().Contains("burger"));
+                var img = clickedGrid.Children.OfType<Image>().FirstOrDefault(i => i.Source.ToString().Contains("dogs"));
                 if (img != null)
-                    FloatingBurger.Source = img.Source;
+                    FloatingDogs.Source = img.Source;
             }
 
             await MainContent.FadeTo(0.3, 300);
@@ -36,18 +36,18 @@ namespace EasyPeasyAPP.Pages
                                 DeviceInfo.Platform == DevicePlatform.iOS ? 430 : 490;
             double panelTop = screenHeight - panelHeight;
             floatingStartY = screenHeight + 100;
-            double burgerHeight = 250;
-            double targetY = panelTop - (burgerHeight / 2);
+            double dogsHeight = 250;
+            double targetY = panelTop - (dogsHeight / 2);
 
             DetailPanel.IsVisible = true;
             await DetailPanel.TranslateTo(0, 0, 400, Easing.CubicOut);
 
-            FloatingBurger.TranslationY = floatingStartY;
-            FloatingBurger.TranslationX = 0;
-            FloatingBurger.IsVisible = true;
-            FloatingBurger.Opacity = 1;
+            FloatingDogs.TranslationY = floatingStartY;
+            FloatingDogs.TranslationX = 0;
+            FloatingDogs.IsVisible = true;
+            FloatingDogs.Opacity = 1;
 
-            await FloatingBurger.TranslateTo(0, targetY, 400, Easing.CubicOut);
+            await FloatingDogs.TranslateTo(0, targetY, 400, Easing.CubicOut);
 
             isDetailVisible = true;
         }
@@ -56,8 +56,8 @@ namespace EasyPeasyAPP.Pages
         {
             if (isDetailVisible)
             {
-                await FloatingBurger.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
-                FloatingBurger.IsVisible = false;
+                await FloatingDogs.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
+                FloatingDogs.IsVisible = false;
 
                 await DetailPanel.TranslateTo(0, 800, 400, Easing.CubicIn);
                 DetailPanel.IsVisible = false;
@@ -84,7 +84,7 @@ namespace EasyPeasyAPP.Pages
 
         private void OnAddToCartClicked(object sender, EventArgs e)
         {
-            DisplayAlert("Korpa", "Burger dodan u korpu!", "OK");
+            DisplayAlert("Korpa", "HotDog dodan u korpu!", "OK");
         }
     }
 }

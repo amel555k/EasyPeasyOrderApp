@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyPeasyAPP.Pages.BurgerPage"
+             x:Class="EasyPeasyAPP.Pages.SendviciPage"
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
 
@@ -36,13 +36,13 @@
                            Margin="0,-5,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="EASY&#x0a;BURGERI"/>
+                                <Span Text="SENDVIČI&#x0a;"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                 </Grid>
 
-                <!-- === Grid 2x2 za prve 4 kartice === -->
+                <!-- === Grid 2x2 za prve kartice === -->
                 <Grid RowDefinitions="Auto,Auto"
                       ColumnDefinitions="*,*"
                       RowSpacing="20"
@@ -50,65 +50,41 @@
                       HorizontalOptions="FillAndExpand"
                       Margin="0,10,0,0">
 
-                    <!-- Kartice 1-4 -->
-                    <Grid Grid.Row="0" Grid.Column="0" x:Name="BurgerCard1">
+                    <!-- Kartice 1-2 -->
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="SendvicCard1">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnSendvicClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="sendvic1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Easy Peasy školski sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="0" Grid.Column="1" x:Name="BurgerCard2">
+                    <Grid Grid.Row="0" Grid.Column="1" x:Name="SendvicCard2">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnSendvicClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="sendvic2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Grid.Column="0" x:Name="BurgerCard3">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
-
-                    <Grid Grid.Row="1" Grid.Column="1" x:Name="BurgerCard4">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Easy Peasy chicken sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
                 </Grid>
 
-                <!-- === Kartica 5 (centrirana) === -->
-                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="BurgerCard5">
+                <!-- === Kartica 3 (centrirana) === -->
+                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SendvicCard3">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        <TapGestureRecognizer Tapped="OnSendvicClicked"/>
                     </Grid.GestureRecognizers>
-                    <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                    <Image Source="sendvic3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                     <Grid VerticalOptions="End" HeightRequest="65">
                         <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                        <Label Text="Easy Peasy chilli sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                     </Grid>
                 </Grid>
@@ -134,9 +110,9 @@
             <ScrollView Padding="20,10,20,30">
                 <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
-                    <!-- 1. Naziv burgera -->
-                    <Label x:Name="BurgerNameLabel"
-                           Text="Easy Crunchy Burger"
+                    <!-- 1. Naziv sendviča -->
+                    <Label x:Name="SendvicNameLabel"
+                           Text="Easy Peasy školski sendvič"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
                            FontSize="30"
@@ -145,7 +121,7 @@
                            HorizontalTextAlignment="Center"/>
 
                     <!-- 2. Sastojci -->
-                    <Label x:Name="BurgerIngredientsLabel"
+                    <Label x:Name="SendvicIngredientsLabel"
                            FontFamily="LeagueSpartan"
                            FontSize="23"
                            TextColor="#FFFFFD"
@@ -155,13 +131,13 @@
                            Margin="15,0,15,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Sastojci: pljeskavica, zelena salata, easy peasy umak od luka"/>
+                                <Span Text="Sastojci: Pureća premium šunka, majoneza, ketchup, krastavice, sos"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
                     <!-- 3. Cijena -->
-                    <Label x:Name="BurgerPriceLabel"
+                    <Label x:Name="SendvicPriceLabel"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
                            FontSize="40"
@@ -171,7 +147,7 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="CIJENA: " TextColor="#FFFFFD"/>
-                                <Span Text="7KM" TextColor="#2E2E2C"/>
+                                <Span Text="4KM" TextColor="#2E2E2C"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -195,9 +171,9 @@
             </ScrollView>
         </Border>
 
-        <!-- === Floating burger iznad panela === -->
-        <Image x:Name="FloatingBurger"
-               Source="burger1.png"
+        <!-- === Floating sendvič iznad panela === -->
+        <Image x:Name="FloatingSendvic"
+               Source="sendvic1.png"
                Aspect="AspectFill"
                HeightRequest="250"
                WidthRequest="250"

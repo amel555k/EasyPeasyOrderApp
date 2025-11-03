@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyPeasyAPP.Pages.BurgerPage"
+             x:Class="EasyPeasyAPP.Pages.PriloziPage"
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
 
@@ -36,7 +36,7 @@
                            Margin="0,-5,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="EASY&#x0a;BURGERI"/>
+                                <Span Text="PRILOZI"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -51,67 +51,57 @@
                       Margin="0,10,0,0">
 
                     <!-- Kartice 1-4 -->
-                    <Grid Grid.Row="0" Grid.Column="0" x:Name="BurgerCard1">
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="PrilogCard1">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnPrilogClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="pomfrit.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Pomfrit" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="0" Grid.Column="1" x:Name="BurgerCard2">
+                    <Grid Grid.Row="0" Grid.Column="1" x:Name="PrilogCard2">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnPrilogClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="onion.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Onion rings" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="0" x:Name="PrilogCard3">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPrilogClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="kecap.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Dodatni Ketchup" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" Grid.Column="1" x:Name="PrilogCard4">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnPrilogClicked"/>
+                        </Grid.GestureRecognizers>
+                        <Image Source="majoneza.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Grid VerticalOptions="End" HeightRequest="65">
+                            <Image Source="kartica.png" Aspect="Fill"/>
+                            <Label Text="Dodatna majoneza" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="0" x:Name="BurgerCard3">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="1" x:Name="BurgerCard4">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
+
                 </Grid>
 
-                <!-- === Kartica 5 (centrirana) === -->
-                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="BurgerCard5">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                    </Grid.GestureRecognizers>
-                    <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                    <Grid VerticalOptions="End" HeightRequest="65">
-                        <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                    </Grid>
-                </Grid>
+              
 
             </VerticalStackLayout>
         </ScrollView>
@@ -135,8 +125,8 @@
                 <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
                     <!-- 1. Naziv burgera -->
-                    <Label x:Name="BurgerNameLabel"
-                           Text="Easy Crunchy Burger"
+                    <Label x:Name="PrilogNameLabel"
+                           Text="Pomfrit"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
                            FontSize="30"
@@ -145,7 +135,7 @@
                            HorizontalTextAlignment="Center"/>
 
                     <!-- 2. Sastojci -->
-                    <Label x:Name="BurgerIngredientsLabel"
+                    <Label x:Name="PrilogIngredientsLabel"
                            FontFamily="LeagueSpartan"
                            FontSize="23"
                            TextColor="#FFFFFD"
@@ -155,26 +145,27 @@
                            Margin="15,0,15,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Sastojci: pljeskavica, zelena salata, easy peasy umak od luka"/>
+                                <Span Text="Najjaci pomfrit"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
-                    <!-- 3. Cijena -->
-                    <Label x:Name="BurgerPriceLabel"
-                           FontFamily="LeagueSpartan"
-                           FontAttributes="Bold"
-                           FontSize="40"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center"
-                           Margin="0,8,0,0">
+                    <Label x:Name="PrilogPriceLabel"
+                     FontFamily="LeagueSpartan"
+                     FontAttributes="Bold"
+                     FontSize="40"
+                     HorizontalOptions="Center"
+                     HorizontalTextAlignment="Center"
+                       Margin="0,8,0,0">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="CIJENA: " TextColor="#FFFFFD"/>
-                                <Span Text="7KM" TextColor="#2E2E2C"/>
+                                <Span Text="2KM" TextColor="#2E2E2C"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
+
+
 
                     <!-- 4. Dodaj u korpu button -->
                     <Button x:Name="AddToCartButton"
@@ -195,9 +186,9 @@
             </ScrollView>
         </Border>
 
-        <!-- === Floating burger iznad panela === -->
-        <Image x:Name="FloatingBurger"
-               Source="burger1.png"
+        <!-- === Floating sok iznad panela === -->
+        <Image x:Name="FloatingPrilog"
+               Source="sok1.png"
                Aspect="AspectFill"
                HeightRequest="250"
                WidthRequest="250"

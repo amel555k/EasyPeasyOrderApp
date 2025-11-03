@@ -1,7 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EasyPeasyAPP.Pages.BurgerPage"
+             x:Class="EasyPeasyAPP.Pages.SokoviPage"
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
 
@@ -36,7 +36,7 @@
                            Margin="0,-5,0,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="EASY&#x0a;BURGERI"/>
+                                <Span Text="SOKOVI"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -51,64 +51,43 @@
                       Margin="0,10,0,0">
 
                     <!-- Kartice 1-4 -->
-                    <Grid Grid.Row="0" Grid.Column="0" x:Name="BurgerCard1">
+                    <Grid Grid.Row="0" Grid.Column="0" x:Name="SokCard1">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnSokClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="sok1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Coca Cola" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="0" Grid.Column="1" x:Name="BurgerCard2">
+                    <Grid Grid.Row="0" Grid.Column="1" x:Name="SokCard2">
                         <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                            <TapGestureRecognizer Tapped="OnSokClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="sok2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Sprite" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
-                    <Grid Grid.Row="1" Grid.Column="0" x:Name="BurgerCard3">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
+                
 
-                    <Grid Grid.Row="1" Grid.Column="1" x:Name="BurgerCard4">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnBurgerClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
                 </Grid>
 
                 <!-- === Kartica 5 (centrirana) === -->
-                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="BurgerCard5">
+                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SokCard5">
                     <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBurgerClicked"/>
+                        <TapGestureRecognizer Tapped="OnSokClicked"/>
                     </Grid.GestureRecognizers>
-                    <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                    <Image Source="sok3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                     <Grid VerticalOptions="End" HeightRequest="65">
                         <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                        <Label Text="Fanta" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                     </Grid>
                 </Grid>
@@ -135,8 +114,8 @@
                 <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
                     <!-- 1. Naziv burgera -->
-                    <Label x:Name="BurgerNameLabel"
-                           Text="Easy Crunchy Burger"
+                    <Label x:Name="SokNameLabel"
+                           Text="Coca Cola"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
                            FontSize="30"
@@ -145,7 +124,7 @@
                            HorizontalTextAlignment="Center"/>
 
                     <!-- 2. Sastojci -->
-                    <Label x:Name="BurgerIngredientsLabel"
+                    <Label x:Name="SokIngredientsLabel"
                            FontFamily="LeagueSpartan"
                            FontSize="23"
                            TextColor="#FFFFFD"
@@ -155,26 +134,27 @@
                            Margin="15,0,15,0">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Sastojci: pljeskavica, zelena salata, easy peasy umak od luka"/>
+                                <Span Text="Osvježenje koje je neminovno uz Easy Peasy produkte"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
 
-                    <!-- 3. Cijena -->
-                    <Label x:Name="BurgerPriceLabel"
-                           FontFamily="LeagueSpartan"
-                           FontAttributes="Bold"
-                           FontSize="40"
-                           HorizontalOptions="Center"
-                           HorizontalTextAlignment="Center"
-                           Margin="0,8,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="CIJENA: " TextColor="#FFFFFD"/>
-                                <Span Text="7KM" TextColor="#2E2E2C"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+					<Label x:Name="SokPriceLabel"
+                     FontFamily="LeagueSpartan"
+                     FontAttributes="Bold"
+                     FontSize="40"
+                     HorizontalOptions="Center"
+                     HorizontalTextAlignment="Center"
+                       Margin="0,8,0,0">
+						<Label.FormattedText>
+							<FormattedString>
+								<Span Text="CIJENA: " TextColor="#FFFFFD"/>
+								<Span Text="2.5KM" TextColor="#2E2E2C"/>
+							</FormattedString>
+						</Label.FormattedText>
+					</Label>
+
+                  
 
                     <!-- 4. Dodaj u korpu button -->
                     <Button x:Name="AddToCartButton"
@@ -195,9 +175,9 @@
             </ScrollView>
         </Border>
 
-        <!-- === Floating burger iznad panela === -->
-        <Image x:Name="FloatingBurger"
-               Source="burger1.png"
+        <!-- === Floating sok iznad panela === -->
+        <Image x:Name="FloatingSok"
+               Source="sok1.png"
                Aspect="AspectFill"
                HeightRequest="250"
                WidthRequest="250"

@@ -1,16 +1,15 @@
-﻿using EasyPeasyAPP.Pages.Auth;
+﻿using EasyPeasyAPP.Models;
 using EasyPeasyAPP.Services;
 
 namespace EasyPeasyAPP.Pages.Auth
 {
     public partial class LoginPage : ContentPage
     {
-        private readonly IAuthService _authService;
+        private IAuthService _authService => (Application.Current as App)?.AuthService;
 
         public LoginPage()
         {
             InitializeComponent();
-            _authService = new AuthService();
         }
 
         private async void OnLoginClicked(object sender, EventArgs e)
@@ -28,9 +27,10 @@ namespace EasyPeasyAPP.Pages.Auth
             {
                 var user = await _authService.LoginWithEmailAsync(
                     EmailEntry.Text.Trim(),
-                    PasswordEntry.Text);
+                    PasswordEntry.Text.Trim());
 
-                Application.Current!.MainPage = new MainPage();
+                // Idi na AppShell nakon uspješnog logina
+                Application.Current.MainPage = new AppShell();
             }
             catch (Exception ex)
             {

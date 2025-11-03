@@ -1,4 +1,5 @@
 ﻿using EasyPeasyAPP.Pages.Auth;
+using System;
 
 namespace EasyPeasyAPP.Pages
 {
@@ -11,36 +12,92 @@ namespace EasyPeasyAPP.Pages
 
         private async void OnBackClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new MainPage();
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//MainPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
 
         private async void OnBurgeriClicked(object sender, EventArgs e)
         {
-            Application.Current!.MainPage = new NavigationPage(new BurgerPage());
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//BurgerPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
 
         private async void OnDogsClicked(object sender, EventArgs e)
         {
-            // TODO: Navigate to dogs list
-            await DisplayAlert("Easy Dogs", "Otvara se lista hot dogova...", "OK");
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//DogsPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
 
         private async void OnSendviciClicked(object sender, EventArgs e)
         {
-            // TODO: Navigate to sendviči list
-            await DisplayAlert("Sendviči", "Otvara se lista sendviča...", "OK");
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//SendviciPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
 
         private async void OnSokoviClicked(object sender, EventArgs e)
         {
-            // TODO: Navigate to sokovi list
-            await DisplayAlert("Sokovi", "Otvara se lista sokova...", "OK");
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//SokoviPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
 
         private async void OnPriloziClicked(object sender, EventArgs e)
         {
-            // TODO: Navigate to prilozi list
-            await DisplayAlert("Prilozi", "Otvara se lista priloga...", "OK");
+            try
+            {
+                if (Shell.Current != null)
+                {
+                    await Shell.Current.GoToAsync("//PriloziPage");
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
+            }
         }
     }
 }

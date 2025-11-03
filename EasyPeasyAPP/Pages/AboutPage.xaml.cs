@@ -7,10 +7,9 @@
             InitializeComponent();
         }
 
-        private void OnBackClicked(object sender, EventArgs e)
+        private async void OnBackClicked(object sender, EventArgs e)
         {
-            // Jednostavno vrati korisnika na MainPage
-            Application.Current.MainPage = new MainPage();
+            await Shell.Current.GoToAsync("//MainPage");
         }
     }
 }

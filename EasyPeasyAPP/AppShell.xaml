@@ -4,12 +4,62 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:EasyPeasyAPP"
+    xmlns:pages="clr-namespace:EasyPeasyAPP.Pages"
     Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="#1A1A1A"
     Title="EasyPeasyAPP">
 
+    <!-- Main Page -->
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <!-- Order Page -->
+    <ShellContent
+        Title="Order"
+        ContentTemplate="{DataTemplate pages:OrderPage}"
+        Route="OrderPage" />
+
+    <!-- Burger Page -->
+    <ShellContent
+        Title="Burgeri"
+        ContentTemplate="{DataTemplate pages:BurgerPage}"
+        Route="BurgerPage" />
+
+    <!-- Dogs Page -->
+    <ShellContent
+        Title="Hot Dogs"
+        ContentTemplate="{DataTemplate pages:DogsPage}"
+        Route="DogsPage" />
+
+    <!-- About Page -->
+    <ShellContent
+        Title="O Nama"
+        ContentTemplate="{DataTemplate pages:AboutPage}"
+        Route="AboutPage" />
+
+    <ShellContent
+        
+        Title="Sokovi"
+        ContentTemplate="{DataTemplate pages:SokoviPage}"
+        Route="SokoviPage" />
+
+    <ShellContent
+    
+    Title="Prilozi"
+    ContentTemplate="{DataTemplate pages:PriloziPage}"
+    Route="PriloziPage" />
+    <ShellContent
+
+     Title="Sendvici"
+ContentTemplate="{DataTemplate pages:SendviciPage}"
+Route="SendviciPage" />
+
+    <ShellContent
+
+     Title="Sendvici"
+ContentTemplate="{DataTemplate pages:ProfilePage}"
+Route="ProfilePage" />
 </Shell>

@@ -1,43 +1,55 @@
-﻿using EasyPeasyAPP.Pages;
-using EasyPeasyAPP.Pages.Auth;
+﻿using EasyPeasyAPP.Pages.Auth;
 using EasyPeasyAPP.Services;
 
 namespace EasyPeasyAPP
 {
     public partial class MainPage : ContentPage
     {
-        private readonly IAuthService _authService;
+        private IAuthService _authService => (Application.Current as App)?.AuthService;
 
         public MainPage()
         {
             InitializeComponent();
-            _authService = new AuthService();
         }
 
         private async void OnNaruciClicked(object sender, EventArgs e)
         {
-            Application.Current!.MainPage = new OrderPage();
+            if (_authService?.IsAuthenticated != true)
+            {
+                await DisplayAlert("Greška", "Morate biti prijavljeni da naručite.", "OK");
+                return;
+            }
+            await Shell.Current.GoToAsync("//OrderPage");
         }
 
-
-        private void OnONamaClicked(object sender, EventArgs e)
+        private async void OnONamaClicked(object sender, EventArgs e)
         {
-            // Direktno zamijeni trenutni ekran sa AboutPage
-            Application.Current!.MainPage = new AboutPage();
+            await Shell.Current.GoToAsync("//AboutPage");
         }
 
         private async void OnProfilClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Profil", "Otvara se profil...", "OK");
+            if (_authService?.IsAuthenticated != true)
+            {
+                await DisplayAlert("Greška", "Morate biti prijavljeni da vidite profil.", "OK");
+                return;
+            }
+            await Shell.Current.GoToAsync("ProfilePage");
         }
 
         private async void OnLogoutClicked(object sender, EventArgs e)
         {
+            if (_authService?.IsAuthenticated != true)
+            {
+                await DisplayAlert("Info", "Niste prijavljeni.", "OK");
+                return;
+            }
+
             bool confirm = await DisplayAlert("Logout", "Da li želite da se odjavite?", "Da", "Ne");
             if (confirm)
             {
                 await _authService.LogoutAsync();
-                Application.Current!.MainPage = new NavigationPage(new LoginPage());
+                Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
         }
     }

@@ -5,12 +5,9 @@ namespace EasyPeasyAPP.Pages
 {
     public partial class SplashPage : ContentPage
     {
-        private readonly IAuthService _authService;
-
         public SplashPage()
         {
             InitializeComponent();
-            _authService = new AuthService();
         }
 
         protected override async void OnAppearing()
@@ -24,23 +21,21 @@ namespace EasyPeasyAPP.Pages
         {
             try
             {
+                // Animacija splash screen-a
                 SplashGroup.Opacity = 0;
                 await SplashGroup.FadeTo(1, 1000);
                 await Task.Delay(1500);
                 await SplashGroup.FadeTo(0, 500);
 
-                if (_authService.IsAuthenticated)
-                {
-                    Application.Current!.MainPage = new MainPage();
-                }
-                else
-                {
-                    Application.Current!.MainPage = new NavigationPage(new LoginPage());
-                }
+                // Pozovi NavigateToShell iz App.xaml.cs
+                // On će inicijalizirati AuthService i odlučiti gdje ići
+                (Application.Current as App)?.NavigateToShell();
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Splash error: {ex.Message}");
+
+                // Fallback na LoginPage ako nešto pukne
                 Application.Current!.MainPage = new NavigationPage(new LoginPage());
             }
         }

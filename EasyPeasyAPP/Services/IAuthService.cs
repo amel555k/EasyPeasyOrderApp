@@ -4,10 +4,15 @@ namespace EasyPeasyAPP.Services
 {
     public interface IAuthService
     {
-        Task<User> LoginWithEmailAsync(string email, string password);
-        Task<User> RegisterWithEmailAsync(string email, string password, string displayName);
+        Task<UserModel> RegisterWithEmailAsync(string email, string password, string ime, string? telefon = null, string? adresa = null);
+        Task<UserModel> LoginWithEmailAsync(string email, string password);
+       
+        Task<UserModel> GetCurrentUserAsync();
+        Task UpdateUserAsync(UserModel user);
+
         Task LogoutAsync();
-        Task<User?> GetCurrentUserAsync();
+        Task InitializeAsync();
         bool IsAuthenticated { get; }
+        UserModel? CurrentUser { get; }
     }
 }
