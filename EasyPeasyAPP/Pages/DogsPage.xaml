@@ -20,26 +20,49 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start">
 
-                <!-- === Header === -->
+                <!-- === Header sa dugmetom nazad i korpom === -->
                 <Grid ColumnDefinitions="Auto,*,Auto"
                       HorizontalOptions="FillAndExpand"
-                      VerticalOptions="Center">
-                    <Label Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
+                      VerticalOptions="Center"
+                      HeightRequest="70">
+
+                    <!-- Back button -->
+                    <ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+                    <!-- Naslov -->
+                    <Label Grid.Column="1"
                            FontFamily="BebasNeue"
                            FontSize="64"
                            TextColor="#EFCD5E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
                            HorizontalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           Margin="0,-5,0,0">
+                           LineBreakMode="WordWrap">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="EASY&#x0a;DOGS"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
+
+                    <!-- Korpa button kao slika -->
+                    <ImageButton Grid.Column="2"
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
                 </Grid>
 
                 <!-- === Grid 2x2 za prve 4 kartice === -->
@@ -67,11 +90,11 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDogsClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="hotdog1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="hotdog2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Peasy Chilli Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <Label Text="Easy Peasy Classic Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
@@ -79,11 +102,11 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDogsClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="hotdog1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="hotdog3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Peasy Chilli Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <Label Text="Easy Peasy Cheese Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
 
@@ -91,11 +114,11 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDogsClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="hotdog1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="hotdog4.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Peasy Chilli Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
-               HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
+                            <Label Text="Easy Peasy BBQ Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                                   HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -105,10 +128,10 @@
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnDogsClicked"/>
                     </Grid.GestureRecognizers>
-                    <Image Source="hotdog1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                    <Image Source="hotdog5.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                     <Grid VerticalOptions="End" HeightRequest="65">
                         <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Peasy Chilli Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                        <Label Text="Easy Peasy Vege Dog" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                     </Grid>
                 </Grid>
@@ -134,7 +157,7 @@
             <ScrollView Padding="20,10,20,30">
                 <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
-                    <!-- 1. Naziv burgera -->
+                    <!-- 1. Naziv hot doga -->
                     <Label x:Name="DogsNameLabel"
                            Text="Easy Peasy Chilli Dog"
                            FontFamily="LeagueSpartan"
@@ -195,7 +218,7 @@
             </ScrollView>
         </Border>
 
-        <!-- === Floating burger iznad panela === -->
+        <!-- === Floating hot dog iznad panela === -->
         <Image x:Name="FloatingDogs"
                Source="hotdog1.png"
                Aspect="AspectFill"
@@ -206,16 +229,5 @@
                IsVisible="False"
                ZIndex="5"/>
 
-        <!-- === Back Button === -->
-        <ImageButton x:Name="BackButton"
-                     Source="nazad.png"
-                     WidthRequest="38"
-                     HeightRequest="38"
-                     BackgroundColor="Transparent"
-                     Clicked="OnBackClicked"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="25,60,0,0"
-                     ZIndex="6"/>
     </Grid>
 </ContentPage>

@@ -9,148 +9,175 @@
         <!-- Pozadinska slika -->
         <Image Source="background.png" Aspect="AspectFill"/>
 
-       
-            <!-- Glavni layout koji se proteže cijelom širinom -->
-            <VerticalStackLayout 
-                Padding="0,60,0,40"
-                Spacing="25"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="Center">
+        <VerticalStackLayout 
+            Padding="0,60,0,40"
+            Spacing="25"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center">
 
-                <!-- Logo -->
-                <Image Source="logo.png"
-                       WidthRequest="250"
-                       HeightRequest="250"
+            <!-- Logo -->
+            <Image Source="logo.png"
+                   WidthRequest="250"
+                   HeightRequest="250"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,25"/>
+
+            <!-- === NARUČI Button === -->
+            <Border BackgroundColor="#EBC036"
+                    HeightRequest="110"
+                    WidthRequest="276"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="15"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNaruciClicked"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="Auto,*"
+                      Padding="20,0"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand">
+                    <Image Source="bag.png"
+                           Grid.Column="0"
+                           WidthRequest="49"
+                           HeightRequest="53"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,0,15,0"/>
+                    <Label Text="NARUČI"
+                           Grid.Column="1"
+                           FontFamily="BebasNeue"
+                           FontSize="64"
+                           TextColor="#5B5B59"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>
+                </Grid>
+            </Border>
+
+            <!-- === HISTORIJA NARUDŽBI Button === -->
+            <Border BackgroundColor="#EBC036"
+                    HeightRequest="57"
+                    WidthRequest="276"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHistorijaClicked"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,Auto"
+                      Padding="20,0"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand">
+                    <Label Text="HISTORIJA NARUDŽBI"
+                           Grid.Column="0"
+                           FontFamily="BebasNeue"
+                           FontSize="33"
+                           TextColor="#5B5B59"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"/>
+                    <Image Source="history.png"
+                           Grid.Column="1"
+                           WidthRequest="34"
+                           HeightRequest="34"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"/>
+                </Grid>
+            </Border>
+
+            <!-- === O NAMA Button === -->
+            <Border BackgroundColor="#EBC036"
+                    HeightRequest="57"
+                    WidthRequest="174"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnONamaClicked"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,Auto"
+                      Padding="15,0"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand">
+                    <Label Text="O NAMA"
+                           Grid.Column="0"
+                           FontFamily="BebasNeue"
+                           FontSize="33"
+                           TextColor="#5B5B59"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,0,15,0"/>
+                    <Image Source="onama.png"
+                           Grid.Column="1"
+                           WidthRequest="34"
+                           HeightRequest="34"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"/>
+                </Grid>
+            </Border>
+
+            <!-- === PROFIL Button === -->
+            <Border BackgroundColor="#EBC036"
+                    HeightRequest="57"
+                    WidthRequest="174"
+                    StrokeThickness="0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnProfilClicked"/>
+                </Border.GestureRecognizers>
+
+                <Grid ColumnDefinitions="*,Auto"
+                      Padding="15,0"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand">
+                    <Label Text="PROFIL"
+                           Grid.Column="0"
+                           FontFamily="BebasNeue"
+                           FontSize="33"
+                           TextColor="#5B5B59"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Margin="0,0,15,0"/>
+                    <Image Source="profil.png"
+                           Grid.Column="1"
+                           WidthRequest="34"
+                           HeightRequest="34"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"/>
+                </Grid>
+            </Border>
+
+            <!-- === Logout Button === -->
+            <Border BackgroundColor="#EBC036"
+                    HeightRequest="62"
+                    WidthRequest="82"
+                    StrokeThickness="0"
+                    Margin="0,25,0,0"
+                    HorizontalOptions="Center">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="12"/>
+                </Border.StrokeShape>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnLogoutClicked"/>
+                </Border.GestureRecognizers>
+
+                <Image Source="izlaz.png"
+                       WidthRequest="32"
+                       HeightRequest="40"
                        HorizontalOptions="Center"
-                       Margin="0,0,0,25"/>
+                       VerticalOptions="Center"/>
+            </Border>
 
-                <!-- === NARUČI Button === -->
-                <Border BackgroundColor="#EBC036"
-                        HeightRequest="110"
-                        WidthRequest="276"
-                        StrokeThickness="0"
-                        HorizontalOptions="Center">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="15"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnNaruciClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <!-- Grid s dvije kolone: ikona lijevo, tekst desno -->
-                    <Grid ColumnDefinitions="Auto,*"
-                          Padding="20,0"
-                          VerticalOptions="Center"
-                          HorizontalOptions="FillAndExpand">
-                        <Image Source="bag.png"
-                               Grid.Column="0"
-                               WidthRequest="49"
-                               HeightRequest="53"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"
-                               Margin="0,0,15,0"/>
-                        <Label Text="NARUČI"
-                               Grid.Column="1"
-                               FontFamily="BebasNeue"
-                               FontSize="64"
-                               TextColor="#5B5B59"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"/>
-                    </Grid>
-                </Border>
-
-               
-
-                <!-- === O NAMA Button === -->
-                <Border BackgroundColor="#EBC036"
-                        HeightRequest="57"
-                        WidthRequest="174"
-                        StrokeThickness="0"
-                        HorizontalOptions="Center">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnONamaClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-                          Padding="15,0"
-                          VerticalOptions="Center"
-                          HorizontalOptions="FillAndExpand">
-                        <Label Text="O NAMA"
-                               Grid.Column="0"
-                               FontFamily="BebasNeue"
-                               FontSize="33"
-                               TextColor="#5B5B59"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"
-                               Margin="0,0,15,0"/>
-                        <Image Source="onama.png"
-                               Grid.Column="1"
-                               WidthRequest="34"
-                               HeightRequest="34"
-                               VerticalOptions="Center"
-                               HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === PROFIL Button === -->
-                <Border BackgroundColor="#EBC036"
-                        HeightRequest="57"
-                        WidthRequest="174"
-                        StrokeThickness="0"
-                        HorizontalOptions="Center">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnProfilClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-                          Padding="15,0"
-                          VerticalOptions="Center"
-                          HorizontalOptions="FillAndExpand">
-                        <Label Text="PROFIL"
-                               Grid.Column="0"
-                               FontFamily="BebasNeue"
-                               FontSize="33"
-                               TextColor="#5B5B59"
-                               VerticalOptions="Center"
-                               HorizontalOptions="Start"
-                               Margin="0,0,15,0"/>
-                        <Image Source="profil.png"
-                               Grid.Column="1"
-                               WidthRequest="34"
-                               HeightRequest="34"
-                               VerticalOptions="Center"
-                               HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === Logout Button === -->
-                <Border BackgroundColor="#EBC036"
-                        HeightRequest="62"
-                        WidthRequest="82"
-                        StrokeThickness="0"
-                        Margin="0,25,0,0"
-                        HorizontalOptions="Center">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnLogoutClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Image Source="izlaz.png"
-                           WidthRequest="32"
-                           HeightRequest="40"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"/>
-                </Border>
-
-            </VerticalStackLayout>
-        
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>

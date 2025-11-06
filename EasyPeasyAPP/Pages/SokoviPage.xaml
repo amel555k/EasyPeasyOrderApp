@@ -20,29 +20,47 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start">
 
-                <!-- === Header === -->
+                <!-- === Header sa dugmetom nazad i korpom === -->
                 <Grid ColumnDefinitions="Auto,*,Auto"
                       HorizontalOptions="FillAndExpand"
-                      VerticalOptions="Center">
-                    <Label Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
+                      VerticalOptions="Center"
+                      HeightRequest="70">
+
+                    <!-- Back button -->
+                    <ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+                    <!-- Naslov -->
+                    <Label Grid.Column="1"
+                           Text="SOKOVI"
                            FontFamily="BebasNeue"
                            FontSize="64"
                            TextColor="#EFCD5E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
                            HorizontalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           Margin="0,-5,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="SOKOVI"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                           LineBreakMode="NoWrap"/>
+
+                    <!-- Korpa button kao slika -->
+                    <ImageButton Grid.Column="2"
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
                 </Grid>
 
-                <!-- === Grid 2x2 za prve 4 kartice === -->
+                <!-- === Grid 2x2 za prve kartice === -->
                 <Grid RowDefinitions="Auto,Auto"
                       ColumnDefinitions="*,*"
                       RowSpacing="20"
@@ -50,7 +68,7 @@
                       HorizontalOptions="FillAndExpand"
                       Margin="0,10,0,0">
 
-                    <!-- Kartice 1-4 -->
+                    <!-- Kartice 1-2 -->
                     <Grid Grid.Row="0" Grid.Column="0" x:Name="SokCard1">
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnSokClicked"/>
@@ -74,13 +92,10 @@
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
-
-                
-
                 </Grid>
 
-                <!-- === Kartica 5 (centrirana) === -->
-                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SokCard5">
+                <!-- === Kartica 3 (centrirana) === -->
+                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SokCard3">
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnSokClicked"/>
                     </Grid.GestureRecognizers>
@@ -113,7 +128,7 @@
             <ScrollView Padding="20,10,20,30">
                 <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
-                    <!-- 1. Naziv burgera -->
+                    <!-- 1. Naziv soka -->
                     <Label x:Name="SokNameLabel"
                            Text="Coca Cola"
                            FontFamily="LeagueSpartan"
@@ -123,7 +138,7 @@
                            HorizontalOptions="Center"
                            HorizontalTextAlignment="Center"/>
 
-                    <!-- 2. Sastojci -->
+                    <!-- 2. Opis -->
                     <Label x:Name="SokIngredientsLabel"
                            FontFamily="LeagueSpartan"
                            FontSize="23"
@@ -139,22 +154,21 @@
                         </Label.FormattedText>
                     </Label>
 
-					<Label x:Name="SokPriceLabel"
-                     FontFamily="LeagueSpartan"
-                     FontAttributes="Bold"
-                     FontSize="40"
-                     HorizontalOptions="Center"
-                     HorizontalTextAlignment="Center"
-                       Margin="0,8,0,0">
-						<Label.FormattedText>
-							<FormattedString>
-								<Span Text="CIJENA: " TextColor="#FFFFFD"/>
-								<Span Text="2.5KM" TextColor="#2E2E2C"/>
-							</FormattedString>
-						</Label.FormattedText>
-					</Label>
-
-                  
+                    <!-- 3. Cijena -->
+                    <Label x:Name="SokPriceLabel"
+                           FontFamily="LeagueSpartan"
+                           FontAttributes="Bold"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="0,8,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="CIJENA: " TextColor="#FFFFFD"/>
+                                <Span Text="2.5KM" TextColor="#2E2E2C"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
                     <!-- 4. Dodaj u korpu button -->
                     <Button x:Name="AddToCartButton"
@@ -186,16 +200,5 @@
                IsVisible="False"
                ZIndex="5"/>
 
-        <!-- === Back Button === -->
-        <ImageButton x:Name="BackButton"
-                     Source="nazad.png"
-                     WidthRequest="38"
-                     HeightRequest="38"
-                     BackgroundColor="Transparent"
-                     Clicked="OnBackClicked"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="25,60,0,0"
-                     ZIndex="6"/>
     </Grid>
 </ContentPage>

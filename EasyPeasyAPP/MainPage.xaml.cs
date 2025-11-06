@@ -22,6 +22,19 @@ namespace EasyPeasyAPP
             await Shell.Current.GoToAsync("//OrderPage");
         }
 
+        // NOVO: dugme za historiju narudžbi
+        private async void OnHistorijaClicked(object sender, EventArgs e)
+        {
+            if (_authService?.IsAuthenticated != true)
+            {
+                await DisplayAlert("Greška", "Morate biti prijavljeni da vidite historiju narudžbi.", "OK");
+                return;
+            }
+
+            // Koristi apsolutni path
+            await Shell.Current.GoToAsync("//NarudzbeHistoryPage");
+        }
+
         private async void OnONamaClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("//AboutPage");

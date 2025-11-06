@@ -5,95 +5,113 @@
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
 
-    <Grid>
-        <!-- === Background === -->
-        <Image Source="background.png"
+	<Grid>
+		<!-- === Background === -->
+		<Image Source="background.png"
                Aspect="AspectFill"
                HorizontalOptions="Fill"
                VerticalOptions="Fill"/>
 
-        <!-- === Scrollable Main Content === -->
-        <ScrollView x:Name="MainContent">
-            <VerticalStackLayout
+		<!-- === Scrollable Main Content === -->
+		<ScrollView x:Name="MainContent">
+			<VerticalStackLayout
                 Padding="25,40"
                 Spacing="25"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start">
 
-                <!-- === Header === -->
-                <Grid ColumnDefinitions="Auto,*,Auto"
+				<!-- === Header sa dugmetom nazad i korpom === -->
+				<Grid ColumnDefinitions="Auto,*,Auto"
                       HorizontalOptions="FillAndExpand"
-                      VerticalOptions="Center">
-                    <Label Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
+                      VerticalOptions="Center"
+                      HeightRequest="70">
+
+					<!-- Back button -->
+					<ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+					<!-- Naslov -->
+					<Label Grid.Column="1"
+                           Text="SENDVIČI"
                            FontFamily="BebasNeue"
                            FontSize="64"
                            TextColor="#EFCD5E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
                            HorizontalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           Margin="0,-5,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="SENDVIČI&#x0a;"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </Grid>
+                           LineBreakMode="NoWrap"/>
 
-                <!-- === Grid 2x2 za prve kartice === -->
-                <Grid RowDefinitions="Auto,Auto"
+					<!-- Korpa button kao slika -->
+					<ImageButton Grid.Column="2"
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
+				</Grid>
+
+				<!-- === Grid 2x2 za prve kartice === -->
+				<Grid RowDefinitions="Auto,Auto"
                       ColumnDefinitions="*,*"
                       RowSpacing="20"
                       ColumnSpacing="15"
                       HorizontalOptions="FillAndExpand"
                       Margin="0,10,0,0">
 
-                    <!-- Kartice 1-2 -->
-                    <Grid Grid.Row="0" Grid.Column="0" x:Name="SendvicCard1">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnSendvicClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="sendvic1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Peasy školski sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+					<!-- Kartice 1-2 -->
+					<Grid Grid.Row="0" Grid.Column="0" x:Name="SendvicCard1">
+						<Grid.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnSendvicClicked"/>
+						</Grid.GestureRecognizers>
+						<Image Source="sendvic1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+						<Grid VerticalOptions="End" HeightRequest="65">
+							<Image Source="kartica.png" Aspect="Fill"/>
+							<Label Text="Easy Peasy školski sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
+						</Grid>
+					</Grid>
 
-                    <Grid Grid.Row="0" Grid.Column="1" x:Name="SendvicCard2">
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="OnSendvicClicked"/>
-                        </Grid.GestureRecognizers>
-                        <Image Source="sendvic2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                        <Grid VerticalOptions="End" HeightRequest="65">
-                            <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Peasy chicken sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+					<Grid Grid.Row="0" Grid.Column="1" x:Name="SendvicCard2">
+						<Grid.GestureRecognizers>
+							<TapGestureRecognizer Tapped="OnSendvicClicked"/>
+						</Grid.GestureRecognizers>
+						<Image Source="sendvic2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+						<Grid VerticalOptions="End" HeightRequest="65">
+							<Image Source="kartica.png" Aspect="Fill"/>
+							<Label Text="Easy Peasy chicken sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </Grid>
-                    </Grid>
-                </Grid>
+						</Grid>
+					</Grid>
+				</Grid>
 
-                <!-- === Kartica 3 (centrirana) === -->
-                <Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SendvicCard3">
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSendvicClicked"/>
-                    </Grid.GestureRecognizers>
-                    <Image Source="sendvic3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
-                    <Grid VerticalOptions="End" HeightRequest="65">
-                        <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Peasy chilli sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+				<!-- === Kartica 3 (centrirana) === -->
+				<Grid HorizontalOptions="Center" WidthRequest="165" Margin="0,5,0,0" x:Name="SendvicCard3">
+					<Grid.GestureRecognizers>
+						<TapGestureRecognizer Tapped="OnSendvicClicked"/>
+					</Grid.GestureRecognizers>
+					<Image Source="sendvic3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+					<Grid VerticalOptions="End" HeightRequest="65">
+						<Image Source="kartica.png" Aspect="Fill"/>
+						<Label Text="Easy Peasy chilli sendvič" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
-                    </Grid>
-                </Grid>
+					</Grid>
+				</Grid>
 
-            </VerticalStackLayout>
-        </ScrollView>
+			</VerticalStackLayout>
+		</ScrollView>
 
-        <!-- === DETAIL PANEL === -->
-        <Border x:Name="DetailPanel"
+		<!-- === DETAIL PANEL === -->
+		<Border x:Name="DetailPanel"
                 BackgroundColor="#EBC036"
                 Stroke="#767674"
                 StrokeThickness="6"
@@ -103,15 +121,15 @@
                 IsVisible="False"
                 Margin="0"
                 ZIndex="2">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="30,30,0,0"/>
-            </Border.StrokeShape>
+			<Border.StrokeShape>
+				<RoundRectangle CornerRadius="30,30,0,0"/>
+			</Border.StrokeShape>
 
-            <ScrollView Padding="20,10,20,30">
-                <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
+			<ScrollView Padding="20,10,20,30">
+				<VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
 
-                    <!-- 1. Naziv sendviča -->
-                    <Label x:Name="SendvicNameLabel"
+					<!-- 1. Naziv sendviča -->
+					<Label x:Name="SendvicNameLabel"
                            Text="Easy Peasy školski sendvič"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
@@ -120,8 +138,8 @@
                            HorizontalOptions="Center"
                            HorizontalTextAlignment="Center"/>
 
-                    <!-- 2. Sastojci -->
-                    <Label x:Name="SendvicIngredientsLabel"
+					<!-- 2. Sastojci -->
+					<Label x:Name="SendvicIngredientsLabel"
                            FontFamily="LeagueSpartan"
                            FontSize="23"
                            TextColor="#FFFFFD"
@@ -129,31 +147,31 @@
                            HorizontalTextAlignment="Center"
                            LineBreakMode="WordWrap"
                            Margin="15,0,15,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Sastojci: Pureća premium šunka, majoneza, ketchup, krastavice, sos"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+						<Label.FormattedText>
+							<FormattedString>
+								<Span Text="Sastojci: Pureća premium šunka, majoneza, ketchup, krastavice, sos"/>
+							</FormattedString>
+						</Label.FormattedText>
+					</Label>
 
-                    <!-- 3. Cijena -->
-                    <Label x:Name="SendvicPriceLabel"
+					<!-- 3. Cijena -->
+					<Label x:Name="SendvicPriceLabel"
                            FontFamily="LeagueSpartan"
                            FontAttributes="Bold"
                            FontSize="40"
                            HorizontalOptions="Center"
                            HorizontalTextAlignment="Center"
                            Margin="0,8,0,0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="CIJENA: " TextColor="#FFFFFD"/>
-                                <Span Text="4KM" TextColor="#2E2E2C"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+						<Label.FormattedText>
+							<FormattedString>
+								<Span Text="CIJENA: " TextColor="#FFFFFD"/>
+								<Span Text="4KM" TextColor="#2E2E2C"/>
+							</FormattedString>
+						</Label.FormattedText>
+					</Label>
 
-                    <!-- 4. Dodaj u korpu button -->
-                    <Button x:Name="AddToCartButton"
+					<!-- 4. Dodaj u korpu button -->
+					<Button x:Name="AddToCartButton"
                             Text="Dodaj u korpu"
                             FontFamily="LeagueSpartan"
                             FontAttributes="Bold"
@@ -167,12 +185,12 @@
                             Margin="0,20,0,0"
                             Clicked="OnAddToCartClicked"/>
 
-                </VerticalStackLayout>
-            </ScrollView>
-        </Border>
+				</VerticalStackLayout>
+			</ScrollView>
+		</Border>
 
-        <!-- === Floating sendvič iznad panela === -->
-        <Image x:Name="FloatingSendvic"
+		<!-- === Floating sendvič iznad panela === -->
+		<Image x:Name="FloatingSendvic"
                Source="sendvic1.png"
                Aspect="AspectFill"
                HeightRequest="250"
@@ -182,16 +200,5 @@
                IsVisible="False"
                ZIndex="5"/>
 
-        <!-- === Back Button === -->
-        <ImageButton x:Name="BackButton"
-                     Source="nazad.png"
-                     WidthRequest="38"
-                     HeightRequest="38"
-                     BackgroundColor="Transparent"
-                     Clicked="OnBackClicked"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="25,60,0,0"
-                     ZIndex="6"/>
-    </Grid>
+	</Grid>
 </ContentPage>

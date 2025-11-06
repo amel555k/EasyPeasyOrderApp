@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EasyPeasyAPP.Pages.NarudzbeHistoryPage"
+             BackgroundColor="#1A1A1A"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid RowDefinitions="Auto,*">
+
+        <!-- Header -->
+        <Grid Grid.Row="0" Padding="25,40,25,20"
+              ColumnDefinitions="Auto,*,Auto"
+              HeightRequest="70">
+
+            <!-- Nazad dugme -->
+            <ImageButton Grid.Column="0"
+                         Source="nazad.png"
+                         WidthRequest="38"
+                         HeightRequest="38"
+                         BackgroundColor="Transparent"
+                         Clicked="OnBackClicked"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         Margin="0,0,10,0"/>
+
+            <Label Grid.Column="1"
+                   Text="MOJE NARUDŽBE"
+                   FontFamily="BebasNeue"
+                   FontSize="48"
+                   TextColor="#EFCD5E"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center"/>
+        </Grid>
+
+        <!-- Sadržaj -->
+        <ScrollView Grid.Row="1" Padding="25,0">
+            <VerticalStackLayout Spacing="15">
+
+                <!-- Poruka ako nema narudžbi -->
+                <Label x:Name="PrazneNarudzbeLabel"
+                       Text="Nemate još narudžbi"
+                       FontFamily="LeagueSpartan"
+                       FontSize="24"
+                       TextColor="#FFFFFD"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Margin="0,50,0,0"
+                       IsVisible="False"/>
+
+                <!-- Lista narudžbi -->
+                <CollectionView x:Name="NarudzbeCollectionView"
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#2E2E2C"
+                                    StrokeThickness="2"
+                                    Stroke="#EFCD5E"
+                                    Margin="0,5"
+                                    Padding="20">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnNarudzbaClicked"
+                                                          CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
+
+                                <Grid RowDefinitions="Auto,Auto,Auto"
+                                      RowSpacing="8">
+
+                                    <!-- Broj narudžbe -->
+                                    <Label Grid.Row="0"
+                                           FontFamily="LeagueSpartan"
+                                           FontSize="20"
+                                           FontAttributes="Bold"
+                                           TextColor="#EFCD5E">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Narudžba #"/>
+                                                <Span Text="{Binding BrojNarudzbe}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Datum i vrijeme -->
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Datum, StringFormat='{0:dd.MM.yyyy HH:mm}'}"
+                                           FontFamily="LeagueSpartan"
+                                           FontSize="16"
+                                           TextColor="#FFFFFD"/>
+
+                                    <!-- Ukupna cijena i status -->
+                                    <Grid Grid.Row="2"
+                                          ColumnDefinitions="*,Auto"
+                                          Margin="0,5,0,0">
+
+                                        <Label Grid.Column="0"
+                                               FontFamily="LeagueSpartan"
+                                               FontSize="22"
+                                               FontAttributes="Bold"
+                                               VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Ukupno: " TextColor="#FFFFFD"/>
+                                                    <Span Text="{Binding Ukupno, StringFormat='{0:F2} KM'}"
+                                                          TextColor="#EFCD5E"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label Grid.Column="1"
+                                               Text="{Binding Status}"
+                                               FontFamily="LeagueSpartan"
+                                               FontSize="16"
+                                               FontAttributes="Bold"
+                                               TextColor="#4CAF50"
+                                               VerticalOptions="Center"
+                                               Padding="10,5"
+                                               BackgroundColor="#1B5E20"/>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Detalji narudžbe (DetailPanel) -->
+        <Border x:Name="DetailPanel"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                BackgroundColor="#EBC036"
+                Stroke="#767674"
+                StrokeThickness="6"
+                VerticalOptions="Fill"
+                TranslationX="500"
+                IsVisible="False"
+                ZIndex="10">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="0"/>
+            </Border.StrokeShape>
+
+            <Grid RowDefinitions="Auto,*">
+
+                <!-- Header detalja -->
+                <Grid Grid.Row="0"
+                      Padding="25,40,25,20"
+                      ColumnDefinitions="Auto,*">
+
+                    <ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnCloseDetailClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+                    <VerticalStackLayout Grid.Column="1"
+                                         Spacing="5"
+                                         VerticalOptions="Center">
+                        <Label x:Name="DetailNarudzbaLabel"
+                               Text="Narudžba #12345"
+                               FontFamily="BebasNeue"
+                               FontSize="36"
+                               TextColor="#2E2E2C"
+                               HorizontalOptions="Start"/>
+
+                        <Label x:Name="DetailDatumLabel"
+                               Text="01.01.2024 12:00"
+                               FontFamily="LeagueSpartan"
+                               FontSize="16"
+                               TextColor="#5B5B59"
+                               HorizontalOptions="Start"/>
+                    </VerticalStackLayout>
+                </Grid>
+
+                <!-- Lista stavki -->
+                <ScrollView Grid.Row="1" Padding="25,0,25,20">
+                    <VerticalStackLayout Spacing="15">
+
+                        <CollectionView x:Name="DetailStavkeCollectionView"
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="15"
+                                          BackgroundColor="#2E2E2C"
+                                          Margin="0,5"
+                                          RowDefinitions="Auto,Auto"
+                                          ColumnDefinitions="80,*,Auto">
+
+                                        <!-- Slika -->
+                                        <Image Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                               Grid.Column="0"
+                                               Source="{Binding Slika}"
+                                               Aspect="AspectFill"
+                                               WidthRequest="70"
+                                               HeightRequest="70"
+                                               Margin="0,0,10,0"/>
+
+                                        <!-- Naziv -->
+                                        <Label Grid.Row="0"
+                                               Grid.Column="1"
+                                               Text="{Binding Naziv}"
+                                               FontFamily="LeagueSpartan"
+                                               FontAttributes="Bold"
+                                               FontSize="18"
+                                               TextColor="#EFCD5E"
+                                               VerticalOptions="Center"/>
+
+                                        <!-- Cijena x Količina -->
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               FontFamily="LeagueSpartan"
+                                               FontSize="16"
+                                               TextColor="#FFFFFD"
+                                               VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{Binding Cijena, StringFormat='{0:F2} KM'}"/>
+                                                    <Span Text=" x "/>
+                                                    <Span Text="{Binding Kolicina}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <!-- Ukupno za stavku -->
+                                        <Label Grid.Row="0"
+                                               Grid.RowSpan="2"
+                                               Grid.Column="2"
+                                               Text="{Binding Ukupno, StringFormat='{0:F2} KM'}"
+                                               FontFamily="LeagueSpartan"
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               TextColor="#EFCD5E"
+                                               VerticalOptions="Center"
+                                               HorizontalOptions="End"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <!-- Ukupna cijena -->
+                        <Border BackgroundColor="#2E2E2C"
+                                Padding="20"
+                                Margin="0,10,0,0">
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="12"/>
+                            </Border.StrokeShape>
+                            <Label x:Name="DetailUkupnoLabel"
+                                   FontFamily="LeagueSpartan"
+                                   FontSize="28"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="UKUPNO: " TextColor="#FFFFFD"/>
+                                        <Span Text="0.00 KM" TextColor="#EFCD5E"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Border>
+
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</ContentPage>

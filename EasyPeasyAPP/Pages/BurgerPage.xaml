@@ -20,26 +20,49 @@
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="Start">
 
-                <!-- === Header === -->
+                <!-- === Header sa dugmetom nazad i korpom === -->
                 <Grid ColumnDefinitions="Auto,*,Auto"
                       HorizontalOptions="FillAndExpand"
-                      VerticalOptions="Center">
-                    <Label Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           HorizontalOptions="Center"
-                           VerticalOptions="Center"
+                      VerticalOptions="Center"
+                      HeightRequest="70">
+
+                    <!-- Back button -->
+                    <ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+                    <!-- Naslov -->
+                    <Label Grid.Column="1"
                            FontFamily="BebasNeue"
                            FontSize="64"
                            TextColor="#EFCD5E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
                            HorizontalTextAlignment="Center"
-                           LineBreakMode="WordWrap"
-                           Margin="0,-5,0,0">
+                           LineBreakMode="WordWrap">
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="EASY&#x0a;BURGERI"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
+
+                    <!-- Korpa button kao slika -->
+                    <ImageButton Grid.Column="2"
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
                 </Grid>
 
                 <!-- === Grid 2x2 za prve 4 kartice === -->
@@ -70,7 +93,7 @@
                         <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Easy Classic Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
@@ -79,10 +102,10 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnBurgerClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="burger3.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Easy Cheese Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
@@ -91,10 +114,10 @@
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnBurgerClicked"/>
                         </Grid.GestureRecognizers>
-                        <Image Source="burger2.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                        <Image Source="burger4.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                         <Grid VerticalOptions="End" HeightRequest="65">
                             <Image Source="kartica.png" Aspect="Fill"/>
-                            <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                            <Label Text="Easy BBQ Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                    HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                         </Grid>
                     </Grid>
@@ -105,10 +128,10 @@
                     <Grid.GestureRecognizers>
                         <TapGestureRecognizer Tapped="OnBurgerClicked"/>
                     </Grid.GestureRecognizers>
-                    <Image Source="burger1.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
+                    <Image Source="burger5.png" Aspect="AspectFill" HeightRequest="180" VerticalOptions="Start"/>
                     <Grid VerticalOptions="End" HeightRequest="65">
                         <Image Source="kartica.png" Aspect="Fill"/>
-                        <Label Text="Easy Crunchy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
+                        <Label Text="Easy Spicy Burger" FontFamily="LeagueSpartan" FontSize="22" TextColor="#FFFFFD"
                                HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"/>
                     </Grid>
                 </Grid>
@@ -206,16 +229,5 @@
                IsVisible="False"
                ZIndex="5"/>
 
-        <!-- === Back Button === -->
-        <ImageButton x:Name="BackButton"
-                     Source="nazad.png"
-                     WidthRequest="38"
-                     HeightRequest="38"
-                     BackgroundColor="Transparent"
-                     Clicked="OnBackClicked"
-                     HorizontalOptions="Start"
-                     VerticalOptions="Start"
-                     Margin="25,60,0,0"
-                     ZIndex="6"/>
     </Grid>
 </ContentPage>

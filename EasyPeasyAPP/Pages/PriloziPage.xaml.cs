@@ -1,4 +1,7 @@
-﻿using Microsoft.Maui.Controls;
+﻿using EasyPeasyAPP.Models;
+using EasyPeasyAPP.Services;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Devices;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,35 +12,29 @@ namespace EasyPeasyAPP.Pages
     {
         private bool isDetailVisible = false;
         private double floatingStartY;
+        private ArtikalModel _trenutniArtikal;
+
+        private IKorpaService _korpaService => (Application.Current as App)?.KorpaService;
 
         public PriloziPage()
         {
             InitializeComponent();
         }
 
-        protected override void OnSizeAllocated(double width, double height)
-        {
-            base.OnSizeAllocated(width, height);
-        }
-
+        // === Klik na prilog karticu ===
         private async void OnPrilogClicked(object sender, EventArgs e)
         {
-            // Blokiraj klik ako je detail panel već otvoren
-            if (isDetailVisible)
-                return;
+            if (isDetailVisible) return;
 
             if (sender is Grid clickedGrid)
             {
-                // Pronađi prvu sliku koja NIJE kartica.png (to je slika priloga)
                 var prilogImage = clickedGrid.Children.OfType<Image>()
                     .FirstOrDefault(i => !i.Source.ToString().Contains("kartica"));
 
                 if (prilogImage != null)
                 {
-                    // Postavi istu sliku na FloatingPrilog
                     FloatingPrilog.Source = prilogImage.Source;
 
-                    // Ažuriraj naziv priloga
                     var label = clickedGrid.Children
                         .OfType<Grid>()
                         .SelectMany(g => g.Children.OfType<Label>())
@@ -47,17 +44,68 @@ namespace EasyPeasyAPP.Pages
                     {
                         PrilogNameLabel.Text = label.Text;
 
-                        // Postavi odgovarajući tekst opisa na osnovu naziva
-                        string opisTekst = label.Text switch
+                        switch (label.Text)
                         {
-                            "Pomfrit" => "Neizostavan prilog uz Vašu užinu od pomno odabranih kropmira iz našeg vrta",
-                            "Onion rings" => "Ekscentričan ali i ukusan prilog, luk pohovan i detaljno oblikovan",
-                            "Dodatni Ketchup" => "Nestalo Vam je kečapa i želite još? Stojimo Vam na raspolaganju",
-                            "Dodatna majoneza" => "Nestalo Vam je majoneze i želite još? Stojimo Vam na raspolaganju",
-                            _ => "Savršen prilog uz Vaš obrok"
-                        };
+                            case "Pomfrit":
+                                _trenutniArtikal = new ArtikalModel
+                                {
+                                    Id = "prilog1",
+                                    Naziv = label.Text,
+                                    Sastojci = "Neizostavan prilog uz Vašu užinu od pomno odabranih kropmira iz našeg vrta",
+                                    Cijena = 2.0,
+                                    Slika = "pomfrit.png",
+                                    Kategorija = "prilozi"
+                                };
+                                PrilogIngredientsLabel.Text = _trenutniArtikal.Sastojci;
+                                UpdatePrice("2KM");
+                                break;
 
-                        PrilogIngredientsLabel.Text = opisTekst;
+                            case "Onion rings":
+                                _trenutniArtikal = new ArtikalModel
+                                {
+                                    Id = "prilog2",
+                                    Naziv = label.Text,
+                                    Sastojci = "Ekscentričan ali i ukusan prilog, luk pohovan i detaljno oblikovan",
+                                    Cijena = 2.5,
+                                    Slika = "onion.png",
+                                    Kategorija = "prilozi"
+                                };
+                                PrilogIngredientsLabel.Text = _trenutniArtikal.Sastojci;
+                                UpdatePrice("2.5KM");
+                                break;
+
+                            case "Dodatni Ketchup":
+                                _trenutniArtikal = new ArtikalModel
+                                {
+                                    Id = "prilog3",
+                                    Naziv = label.Text,
+                                    Sastojci = "Nestalo Vam je kečapa i želite još? Stojimo Vam na raspolaganju",
+                                    Cijena = 0.5,
+                                    Slika = "kecap.png",
+                                    Kategorija = "prilozi"
+                                };
+                                PrilogIngredientsLabel.Text = _trenutniArtikal.Sastojci;
+                                UpdatePrice("0.5KM");
+                                break;
+
+                            case "Dodatna majoneza":
+                                _trenutniArtikal = new ArtikalModel
+                                {
+                                    Id = "prilog4",
+                                    Naziv = label.Text,
+                                    Sastojci = "Nestalo Vam je majoneze i želite još? Stojimo Vam na raspolaganju",
+                                    Cijena = 0.5,
+                                    Slika = "majoneza.png",
+                                    Kategorija = "prilozi"
+                                };
+                                PrilogIngredientsLabel.Text = _trenutniArtikal.Sastojci;
+                                UpdatePrice("0.5KM");
+                                break;
+
+                            default:
+                                _trenutniArtikal = null;
+                                break;
+                        }
                     }
                 }
             }
@@ -70,14 +118,13 @@ namespace EasyPeasyAPP.Pages
             double panelTop = screenHeight - panelHeight;
 
             floatingStartY = screenHeight + 100;
-            double burgerHeight = 250;
-            double targetY = panelTop - (burgerHeight / 2);
+            double prilogHeight = 250;
+            double targetY = panelTop - (prilogHeight / 2);
 
             DetailPanel.IsVisible = true;
             await DetailPanel.TranslateTo(0, 0, 400, Easing.CubicOut);
 
             FloatingPrilog.TranslationY = floatingStartY;
-            FloatingPrilog.TranslationX = 0;
             FloatingPrilog.IsVisible = true;
             FloatingPrilog.Opacity = 1;
 
@@ -86,39 +133,85 @@ namespace EasyPeasyAPP.Pages
             isDetailVisible = true;
         }
 
+        // === Ažuriranje cijene u detaljnom panelu ===
+        private void UpdatePrice(string price)
+        {
+            PrilogPriceLabel.FormattedText = new FormattedString
+            {
+                Spans =
+                {
+                    new Span { Text = "CIJENA: ", TextColor = Color.FromArgb("#FFFFFD") },
+                    new Span { Text = price, TextColor = Color.FromArgb("#2E2E2C") }
+                }
+            };
+        }
+
+        // === Klik na Back dugme ===
         private async void OnBackClicked(object sender, EventArgs e)
         {
             if (isDetailVisible)
             {
-                await FloatingPrilog.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
-                FloatingPrilog.IsVisible = false;
-
-                await DetailPanel.TranslateTo(0, 800, 400, Easing.CubicIn);
-                DetailPanel.IsVisible = false;
-
-                await MainContent.FadeTo(1.0, 300);
-
-                isDetailVisible = false;
+                await CloseDetailPanel();
             }
             else
             {
-                try
-                {
-                    if (Shell.Current != null)
-                    {
-                        await Shell.Current.GoToAsync("//OrderPage");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
-                }
+                await NavigateBackToOrderPage();
             }
         }
 
-        private void OnAddToCartClicked(object sender, EventArgs e)
+        // === Zatvaranje detaljnog panela ===
+        private async Task CloseDetailPanel()
         {
-            DisplayAlert("Korpa", "Prilog dodan u korpu!", "OK");
+            await FloatingPrilog.TranslateTo(0, floatingStartY, 400, Easing.CubicIn);
+            FloatingPrilog.IsVisible = false;
+
+            await DetailPanel.TranslateTo(0, 800, 400, Easing.CubicIn);
+            DetailPanel.IsVisible = false;
+
+            await MainContent.FadeTo(1.0, 300);
+            isDetailVisible = false;
+        }
+
+        // === Navigacija nazad na OrderPage ===
+        private async Task NavigateBackToOrderPage()
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("//OrderPage");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Greška", $"Neuspješna navigacija: {ex.Message}", "OK");
+            }
+        }
+
+        // === Klik na "Dodaj u korpu" ===
+        private async void OnAddToCartClicked(object sender, EventArgs e)
+        {
+            if (_trenutniArtikal == null)
+            {
+                await DisplayAlert("Greška", "Artikal nije pronađen.", "OK");
+                return;
+            }
+
+            _korpaService?.DodajUKorpu(_trenutniArtikal);
+            await DisplayAlert("Uspjeh", $"{_trenutniArtikal.Naziv} dodan u korpu!", "OK");
+
+            if (isDetailVisible)
+                await CloseDetailPanel();
+        }
+
+        // === Klik na "Korpa" button ===
+        private async void OnKorpaClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("KorpaPage");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Greška", $"Neuspješna navigacija: {ex.Message}", "OK");
+            }
         }
     }
 }

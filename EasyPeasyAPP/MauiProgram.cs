@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using EasyPeasyAPP.Services;
 using EasyPeasyAPP.Pages.Auth;
+using EasyPeasyAPP.Pages;
 
 namespace EasyPeasyAPP
 {
@@ -20,15 +21,24 @@ namespace EasyPeasyAPP
                     fonts.AddFont("LeagueSpartan-Bold.ttf", "LeagueSpartanBold");
                 });
 
-            // Registruj AuthService kao Singleton (jedna instanca za cijelu app)
+            // Registruj servise kao Singleton (jedna instanca za cijelu app)
             builder.Services.AddSingleton<IAuthService, AuthService>();
+            builder.Services.AddSingleton<IKorpaService, KorpaService>();
+            builder.Services.AddSingleton<INarudzbaService, NarudzbaService>();
 
             // Registruj sve page-ove kao Transient (nova instanca svaki put)
             builder.Services.AddTransient<LoginPage>();
             builder.Services.AddTransient<RegisterPage>();
             builder.Services.AddTransient<MainPage>();
-
-            // Dodaj i ostale page-ove koje imaš (ProfilePage, OrderPage, AboutPage, itd.)
+            builder.Services.AddTransient<ProfilePage>();
+            builder.Services.AddTransient<OrderPage>();
+            builder.Services.AddTransient<AboutPage>();
+            builder.Services.AddTransient<SendviciPage>();
+            builder.Services.AddTransient<BurgerPage>();
+            builder.Services.AddTransient<DogsPage>();
+            builder.Services.AddTransient<SokoviPage>();
+            builder.Services.AddTransient<PriloziPage>();
+            builder.Services.AddTransient<KorpaPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

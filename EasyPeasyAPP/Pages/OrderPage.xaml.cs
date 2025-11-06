@@ -99,5 +99,18 @@ namespace EasyPeasyAPP.Pages
                 await DisplayAlert("Error", $"Navigation failed: {ex.Message}", "OK");
             }
         }
+
+        // === Klik na "Korpa" button ===
+        private async void OnKorpaClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await Shell.Current.GoToAsync("KorpaPage");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Greška", $"Neuspješna navigacija: {ex.Message}", "OK");
+            }
+        }
     }
 }

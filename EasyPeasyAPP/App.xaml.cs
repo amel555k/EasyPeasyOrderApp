@@ -7,33 +7,41 @@ namespace EasyPeasyAPP
     public partial class App : Application
     {
         private readonly IAuthService _authService;
+        private readonly IKorpaService _korpaService;
+        private readonly INarudzbaService _narudzbaService;
 
-        // Dodaj ovu property da bi drugi page-ovi mogli pristupiti AuthService
+        // Public property da drugi page-ovi mogu pristupiti servisima
         public IAuthService AuthService => _authService;
+        public IKorpaService KorpaService => _korpaService;
+        public INarudzbaService NarudzbaService => _narudzbaService;
 
-        public App(IAuthService authService)
+        // Konstruktor koristi Dependency Injection (DI)
+        public App(IAuthService authService, IKorpaService korpaService, INarudzbaService narudzbaService)
         {
             InitializeComponent();
-            _authService = authService;
 
-            // Prvo prikaži SplashPage
+            _authService = authService;
+            _korpaService = korpaService;
+            _narudzbaService = narudzbaService;
+
+            // Početni ekran (Splash)
             MainPage = new SplashPage();
         }
 
-        // Metoda za prelazak nakon splash screen-a
+        // Metoda koja se poziva nakon Splash-a da odredi što dalje
         public async void NavigateToShell()
         {
-            // Inicijaliziraj AuthService (učitaj token)
+            // Inicijalizuj AuthService (učitava token i usera)
             await _authService.InitializeAsync();
 
             if (_authService.IsAuthenticated)
             {
-                // Ako je logovan, idi na AppShell
+                // Ako je korisnik već prijavljen, ide direktno u AppShell
                 MainPage = new AppShell();
             }
             else
             {
-                // Ako nije, prikaži LoginPage (bez argumenata!)
+                // Inače prikaži login ekran
                 MainPage = new NavigationPage(new LoginPage());
             }
         }

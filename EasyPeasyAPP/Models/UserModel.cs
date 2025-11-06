@@ -1,4 +1,6 @@
-﻿namespace EasyPeasyAPP.Models
+﻿using System;
+
+namespace EasyPeasyAPP.Models
 {
     public class UserModel
     {

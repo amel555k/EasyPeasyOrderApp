@@ -13,5 +13,6 @@ public partial class AppShell : Shell
         Routing.RegisterRoute("OrderPage", typeof(OrderPage));
         Routing.RegisterRoute("AboutPage", typeof(AboutPage));
         Routing.RegisterRoute("ProfilePage", typeof(ProfilePage)); // dodano
+        Routing.RegisterRoute("KorpaPage", typeof(KorpaPage));
     }
 }

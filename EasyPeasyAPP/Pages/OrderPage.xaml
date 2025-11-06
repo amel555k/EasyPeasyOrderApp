@@ -5,67 +5,79 @@
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
 
-	<Grid>
-		<!-- Background -->
-		<Image Source="background.png"
+    <Grid>
+        <!-- Background -->
+        <Image Source="background.png"
 			   Aspect="AspectFill"
 			   HorizontalOptions="Fill"
 			   VerticalOptions="Fill"/>
 
-		<ScrollView>
-			<VerticalStackLayout
+        <ScrollView>
+            <VerticalStackLayout
 				Padding="25,40"
 				Spacing="35"
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="Start">
 
-				<!-- === Header (Nazad + PONUDA) === -->
-				<Grid ColumnDefinitions="Auto,*,Auto"
+                <!-- === Header (Nazad + PONUDA + Korpa) === -->
+                <Grid ColumnDefinitions="Auto,*,Auto"
 					  HorizontalOptions="FillAndExpand"
 					  VerticalOptions="Center"
+					  HeightRequest="70"
 					  Margin="0,0,0,0">
 
-					<!-- Nazad dugme -->
-					<ImageButton Source="nazad.png"
-								 Grid.Column="0"
+                    <!-- Nazad dugme -->
+                    <ImageButton Grid.Column="0"
+								 Source="nazad.png"
 								 WidthRequest="38"
 								 HeightRequest="38"
 								 BackgroundColor="Transparent"
 								 Clicked="OnBackClicked"
 								 HorizontalOptions="Start"
-								 VerticalOptions="Center"/>
+								 VerticalOptions="Center"
+								 Margin="0,0,10,0"/>
 
-					<!-- Centrirani tekst preko cijelog ekrana -->
-					<Label Text="PONUDA"
-						   Grid.Column="0"
-						   Grid.ColumnSpan="3"
-						   HorizontalOptions="Center"
-						   VerticalOptions="Center"
+                    <!-- Centrirani tekst PONUDA -->
+                    <Label Grid.Column="1"
+						   Text="PONUDA"
 						   FontFamily="BebasNeue"
 						   FontSize="64"
 						   TextColor="#EFCD5E"
-						   Margin="0,-5,0,0"/>
+						   HorizontalOptions="Center"
+						   VerticalOptions="Center"
+						   HorizontalTextAlignment="Center"
+						   LineBreakMode="NoWrap"/>
 
-				</Grid>
+                    <!-- Korpa dugme -->
+                    <ImageButton Grid.Column="2"
+								 Source="korpica.png"
+								 WidthRequest="38"
+								 HeightRequest="38"
+								 BackgroundColor="Transparent"
+								 Clicked="OnKorpaClicked"
+								 HorizontalOptions="End"
+								 VerticalOptions="Center"
+								 Margin="10,0,0,0"/>
+                </Grid>
 
-				<!-- === EASY BURGERI Button === -->
-				<Border BackgroundColor="#EBC036"
+                <!-- === EASY BURGERI Button === -->
+                <Border BackgroundColor="#EBC036"
 						HeightRequest="65"
 						StrokeThickness="0"
 						HorizontalOptions="FillAndExpand"
 						Margin="10,0">
-					<Border.StrokeShape>
-						<RoundRectangle CornerRadius="12"/>
-					</Border.StrokeShape>
-					<Border.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnBurgeriClicked"/>
-					</Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnBurgeriClicked"/>
+                    </Border.GestureRecognizers>
 
-					<Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="*,Auto"
 						  Padding="20,0"
 						  VerticalOptions="Center"
 						  HorizontalOptions="FillAndExpand">
-						<Label Text="EASY BURGERI"
+                        <Label Text="EASY BURGERI"
 							   Grid.Column="0"
 							   FontFamily="BebasNeue"
 							   FontSize="40"
@@ -73,33 +85,33 @@
 							   VerticalOptions="Center"
 							   HorizontalOptions="Start"
 							   Margin="0,0,15,0"/>
-						<Image Source="burger.png"
+                        <Image Source="burger.png"
 							   Grid.Column="1"
 							   WidthRequest="40"
 							   HeightRequest="40"
 							   VerticalOptions="Center"
 							   HorizontalOptions="End"/>
-					</Grid>
-				</Border>
+                    </Grid>
+                </Border>
 
-				<!-- === EASY DOGS Button === -->
-				<Border BackgroundColor="#EBC036"
+                <!-- === EASY DOGS Button === -->
+                <Border BackgroundColor="#EBC036"
 						HeightRequest="65"
 						StrokeThickness="0"
 						HorizontalOptions="FillAndExpand"
 						Margin="10,0">
-					<Border.StrokeShape>
-						<RoundRectangle CornerRadius="12"/>
-					</Border.StrokeShape>
-					<Border.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnDogsClicked"/>
-					</Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnDogsClicked"/>
+                    </Border.GestureRecognizers>
 
-					<Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="*,Auto"
 						  Padding="20,0"
 						  VerticalOptions="Center"
 						  HorizontalOptions="FillAndExpand">
-						<Label Text="EASY DOGS"
+                        <Label Text="EASY DOGS"
 							   Grid.Column="0"
 							   FontFamily="BebasNeue"
 							   FontSize="40"
@@ -107,33 +119,33 @@
 							   VerticalOptions="Center"
 							   HorizontalOptions="Start"
 							   Margin="0,0,15,0"/>
-						<Image Source="hotdog.png"
+                        <Image Source="hotdog.png"
 							   Grid.Column="1"
 							   WidthRequest="40"
 							   HeightRequest="40"
 							   VerticalOptions="Center"
 							   HorizontalOptions="End"/>
-					</Grid>
-				</Border>
+                    </Grid>
+                </Border>
 
-				<!-- === SENDVIČI Button === -->
-				<Border BackgroundColor="#EBC036"
+                <!-- === SENDVIČI Button === -->
+                <Border BackgroundColor="#EBC036"
 						HeightRequest="65"
 						StrokeThickness="0"
 						HorizontalOptions="FillAndExpand"
 						Margin="10,0">
-					<Border.StrokeShape>
-						<RoundRectangle CornerRadius="12"/>
-					</Border.StrokeShape>
-					<Border.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnSendviciClicked"/>
-					</Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSendviciClicked"/>
+                    </Border.GestureRecognizers>
 
-					<Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="*,Auto"
 						  Padding="20,0"
 						  VerticalOptions="Center"
 						  HorizontalOptions="FillAndExpand">
-						<Label Text="SENDVIČI"
+                        <Label Text="SENDVIČI"
 							   Grid.Column="0"
 							   FontFamily="BebasNeue"
 							   FontSize="40"
@@ -141,33 +153,33 @@
 							   VerticalOptions="Center"
 							   HorizontalOptions="Start"
 							   Margin="0,0,15,0"/>
-						<Image Source="sendvic.png"
+                        <Image Source="sendvic.png"
 							   Grid.Column="1"
 							   WidthRequest="40"
 							   HeightRequest="40"
 							   VerticalOptions="Center"
 							   HorizontalOptions="End"/>
-					</Grid>
-				</Border>
+                    </Grid>
+                </Border>
 
-				<!-- === SOKOVI Button === -->
-				<Border BackgroundColor="#EBC036"
+                <!-- === SOKOVI Button === -->
+                <Border BackgroundColor="#EBC036"
 						HeightRequest="65"
 						StrokeThickness="0"
 						HorizontalOptions="FillAndExpand"
 						Margin="10,0">
-					<Border.StrokeShape>
-						<RoundRectangle CornerRadius="12"/>
-					</Border.StrokeShape>
-					<Border.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnSokoviClicked"/>
-					</Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnSokoviClicked"/>
+                    </Border.GestureRecognizers>
 
-					<Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="*,Auto"
 						  Padding="20,0"
 						  VerticalOptions="Center"
 						  HorizontalOptions="FillAndExpand">
-						<Label Text="SOKOVI"
+                        <Label Text="SOKOVI"
 							   Grid.Column="0"
 							   FontFamily="BebasNeue"
 							   FontSize="40"
@@ -175,33 +187,33 @@
 							   VerticalOptions="Center"
 							   HorizontalOptions="Start"
 							   Margin="0,0,15,0"/>
-						<Image Source="sokovi.png"
+                        <Image Source="sokovi.png"
 							   Grid.Column="1"
 							   WidthRequest="40"
 							   HeightRequest="40"
 							   VerticalOptions="Center"
 							   HorizontalOptions="End"/>
-					</Grid>
-				</Border>
+                    </Grid>
+                </Border>
 
-				<!-- === PRILOZI Button === -->
-				<Border BackgroundColor="#EBC036"
+                <!-- === PRILOZI Button === -->
+                <Border BackgroundColor="#EBC036"
 						HeightRequest="65"
 						StrokeThickness="0"
 						HorizontalOptions="FillAndExpand"
 						Margin="10,0">
-					<Border.StrokeShape>
-						<RoundRectangle CornerRadius="12"/>
-					</Border.StrokeShape>
-					<Border.GestureRecognizers>
-						<TapGestureRecognizer Tapped="OnPriloziClicked"/>
-					</Border.GestureRecognizers>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="12"/>
+                    </Border.StrokeShape>
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPriloziClicked"/>
+                    </Border.GestureRecognizers>
 
-					<Grid ColumnDefinitions="*,Auto"
+                    <Grid ColumnDefinitions="*,Auto"
 						  Padding="20,0"
 						  VerticalOptions="Center"
 						  HorizontalOptions="FillAndExpand">
-						<Label Text="PRILOZI"
+                        <Label Text="PRILOZI"
 							   Grid.Column="0"
 							   FontFamily="BebasNeue"
 							   FontSize="40"
@@ -209,17 +221,17 @@
 							   VerticalOptions="Center"
 							   HorizontalOptions="Start"
 							   Margin="0,0,15,0"/>
-						<Image Source="prilozi.png"
+                        <Image Source="prilozi.png"
 							   Grid.Column="1"
 							   WidthRequest="40"
 							   HeightRequest="40"
 							   VerticalOptions="Center"
 							   HorizontalOptions="End"/>
-					</Grid>
-				</Border>
+                    </Grid>
+                </Border>
 
-			</VerticalStackLayout>
-		</ScrollView>
-	</Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 
 </ContentPage>
