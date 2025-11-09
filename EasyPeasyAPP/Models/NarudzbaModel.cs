@@ -13,8 +13,12 @@ namespace EasyPeasyAPP.Models
         public string Adresa { get; set; }
         public string Telefon { get; set; }
         public DateTime Datum { get; set; }
-        public string Status { get; set; } = "nova";
+        public string Status { get; set; }
         public double Ukupno { get; set; }
-        public List<KorpaStavka> Stavke { get; set; } = new List<KorpaStavka>();
+        public List<KorpaStavka> Stavke { get; set; }
+
+        // Nova polja
+        public string AdresaDostave { get; set; }
+        public string Napomena { get; set; }
     }
 }

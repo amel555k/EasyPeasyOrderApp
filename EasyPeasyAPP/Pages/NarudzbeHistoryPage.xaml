@@ -7,33 +7,25 @@
 
     <Grid RowDefinitions="Auto,*">
 
-        <!-- Header -->
-        <Grid Grid.Row="0" Padding="25,40,25,20"
-              ColumnDefinitions="Auto,*,Auto"
-              HeightRequest="70">
-
-            <!-- Nazad dugme -->
-            <ImageButton Grid.Column="0"
-                         Source="nazad.png"
+        <!-- Header - FIKSAN -->
+        <Grid Grid.Row="0" Padding="25,40,25,20">
+            <ImageButton Source="nazad.png"
                          WidthRequest="38"
                          HeightRequest="38"
                          BackgroundColor="Transparent"
                          Clicked="OnBackClicked"
                          HorizontalOptions="Start"
-                         VerticalOptions="Center"
-                         Margin="0,0,10,0"/>
+                         VerticalOptions="Center"/>
 
-            <Label Grid.Column="1"
-                   Text="MOJE NARUDŽBE"
+            <Label Text="MOJE NARUDŽBE"
                    FontFamily="BebasNeue"
                    FontSize="48"
                    TextColor="#EFCD5E"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   HorizontalTextAlignment="Center"/>
+                   VerticalOptions="Center"/>
         </Grid>
 
-        <!-- Sadržaj -->
+        <!-- Sadržaj - SCROLLABLE -->
         <ScrollView Grid.Row="1" Padding="25,0">
             <VerticalStackLayout Spacing="15">
 
@@ -109,15 +101,17 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <Label Grid.Column="1"
-                                               Text="{Binding Status}"
-                                               FontFamily="LeagueSpartan"
-                                               FontSize="16"
-                                               FontAttributes="Bold"
-                                               TextColor="#4CAF50"
-                                               VerticalOptions="Center"
-                                               Padding="10,5"
-                                               BackgroundColor="#1B5E20"/>
+                                        <Border Grid.Column="1"
+                                                BackgroundColor="#1B5E20"
+                                                Padding="10,5"
+                                                StrokeShape="RoundRectangle 8">
+                                            <Label Text="{Binding Status}"
+                                                   FontFamily="LeagueSpartan"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#4CAF50"
+                                                   VerticalOptions="Center"/>
+                                        </Border>
                                     </Grid>
 
                                 </Grid>
@@ -129,13 +123,13 @@
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Detalji narudžbe (DetailPanel) -->
+        <!-- Detalji narudžbe (DetailPanel) - PREKO CIJELOG EKRANA -->
         <Border x:Name="DetailPanel"
                 Grid.Row="0"
                 Grid.RowSpan="2"
-                BackgroundColor="#EBC036"
-                Stroke="#767674"
-                StrokeThickness="6"
+                BackgroundColor="#1A1A1A"
+                Stroke="#D6AF31"
+                StrokeThickness="3"
                 VerticalOptions="Fill"
                 TranslationX="500"
                 IsVisible="False"
@@ -147,36 +141,32 @@
             <Grid RowDefinitions="Auto,*">
 
                 <!-- Header detalja -->
-                <Grid Grid.Row="0"
-                      Padding="25,40,25,20"
-                      ColumnDefinitions="Auto,*">
-
-                    <ImageButton Grid.Column="0"
-                                 Source="nazad.png"
+                <Grid Grid.Row="0" Padding="25,40,25,20">
+                    <ImageButton Source="nazad.png"
                                  WidthRequest="38"
                                  HeightRequest="38"
                                  BackgroundColor="Transparent"
                                  Clicked="OnCloseDetailClicked"
                                  HorizontalOptions="Start"
-                                 VerticalOptions="Center"
-                                 Margin="0,0,10,0"/>
+                                 VerticalOptions="Center"/>
 
-                    <VerticalStackLayout Grid.Column="1"
-                                         Spacing="5"
-                                         VerticalOptions="Center">
+                    <VerticalStackLayout HorizontalOptions="Center"
+                                         VerticalOptions="Center"
+                                         Spacing="8"
+                                         Margin="60,0,0,0">
                         <Label x:Name="DetailNarudzbaLabel"
                                Text="Narudžba #12345"
                                FontFamily="BebasNeue"
-                               FontSize="36"
-                               TextColor="#2E2E2C"
-                               HorizontalOptions="Start"/>
+                               FontSize="40"
+                               TextColor="#EFCD5E"
+                               HorizontalOptions="Center"/>
 
                         <Label x:Name="DetailDatumLabel"
                                Text="01.01.2024 12:00"
                                FontFamily="LeagueSpartan"
                                FontSize="16"
-                               TextColor="#5B5B59"
-                               HorizontalOptions="Start"/>
+                               TextColor="#FFFFFD"
+                               HorizontalOptions="Center"/>
                     </VerticalStackLayout>
                 </Grid>
 
@@ -188,74 +178,83 @@
                                         SelectionMode="None">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Padding="15"
-                                          BackgroundColor="#2E2E2C"
-                                          Margin="0,5"
-                                          RowDefinitions="Auto,Auto"
-                                          ColumnDefinitions="80,*,Auto">
+                                    <Border BackgroundColor="#2E2E2C"
+                                            Stroke="#D6AF31"
+                                            StrokeThickness="1"
+                                            Margin="0,5"
+                                            Padding="15">
+                                        <Border.StrokeShape>
+                                            <RoundRectangle CornerRadius="8"/>
+                                        </Border.StrokeShape>
 
-                                        <!-- Slika -->
-                                        <Image Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                               Grid.Column="0"
-                                               Source="{Binding Slika}"
-                                               Aspect="AspectFill"
-                                               WidthRequest="70"
-                                               HeightRequest="70"
-                                               Margin="0,0,10,0"/>
+                                        <Grid RowDefinitions="Auto,Auto"
+                                              ColumnDefinitions="80,*,Auto">
 
-                                        <!-- Naziv -->
-                                        <Label Grid.Row="0"
-                                               Grid.Column="1"
-                                               Text="{Binding Naziv}"
-                                               FontFamily="LeagueSpartan"
-                                               FontAttributes="Bold"
-                                               FontSize="18"
-                                               TextColor="#EFCD5E"
-                                               VerticalOptions="Center"/>
+                                            <!-- Slika -->
+                                            <Image Grid.Row="0"
+                                                   Grid.RowSpan="2"
+                                                   Grid.Column="0"
+                                                   Source="{Binding Slika}"
+                                                   Aspect="AspectFill"
+                                                   WidthRequest="70"
+                                                   HeightRequest="70"
+                                                   Margin="0,0,10,0"/>
 
-                                        <!-- Cijena x Količina -->
-                                        <Label Grid.Row="1"
-                                               Grid.Column="1"
-                                               FontFamily="LeagueSpartan"
-                                               FontSize="16"
-                                               TextColor="#FFFFFD"
-                                               VerticalOptions="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding Cijena, StringFormat='{0:F2} KM'}"/>
-                                                    <Span Text=" x "/>
-                                                    <Span Text="{Binding Kolicina}"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
+                                            <!-- Naziv -->
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Text="{Binding Naziv}"
+                                                   FontFamily="LeagueSpartan"
+                                                   FontAttributes="Bold"
+                                                   FontSize="18"
+                                                   TextColor="#EFCD5E"
+                                                   VerticalOptions="Center"/>
 
-                                        <!-- Ukupno za stavku -->
-                                        <Label Grid.Row="0"
-                                               Grid.RowSpan="2"
-                                               Grid.Column="2"
-                                               Text="{Binding Ukupno, StringFormat='{0:F2} KM'}"
-                                               FontFamily="LeagueSpartan"
-                                               FontSize="20"
-                                               FontAttributes="Bold"
-                                               TextColor="#EFCD5E"
-                                               VerticalOptions="Center"
-                                               HorizontalOptions="End"/>
-                                    </Grid>
+                                            <!-- Cijena x Količina -->
+                                            <Label Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   FontFamily="LeagueSpartan"
+                                                   FontSize="16"
+                                                   TextColor="#FFFFFD"
+                                                   VerticalOptions="Center">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Cijena, StringFormat='{0:F2} KM'}"/>
+                                                        <Span Text=" x "/>
+                                                        <Span Text="{Binding Kolicina}"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                            <!-- Ukupno za stavku -->
+                                            <Label Grid.Row="0"
+                                                   Grid.RowSpan="2"
+                                                   Grid.Column="2"
+                                                   Text="{Binding Ukupno, StringFormat='{0:F2} KM'}"
+                                                   FontFamily="LeagueSpartan"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#EFCD5E"
+                                                   VerticalOptions="Center"
+                                                   HorizontalOptions="End"/>
+                                        </Grid>
+                                    </Border>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
                         </CollectionView>
 
                         <!-- Ukupna cijena -->
                         <Border BackgroundColor="#2E2E2C"
-                                Padding="20"
-                                Margin="0,10,0,0">
+                                Stroke="#D6AF31"
+                                StrokeThickness="2"
+                                Padding="25"
+                                Margin="0,15,0,0">
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="12"/>
                             </Border.StrokeShape>
                             <Label x:Name="DetailUkupnoLabel"
                                    FontFamily="LeagueSpartan"
-                                   FontSize="28"
+                                   FontSize="32"
                                    FontAttributes="Bold"
                                    HorizontalOptions="Center">
                                 <Label.FormattedText>
@@ -274,4 +273,6 @@
         </Border>
 
     </Grid>
+  
+
 </ContentPage>

@@ -8,7 +8,7 @@
     <Grid RowDefinitions="Auto,*,Auto">
 
         <!-- Header -->
-        <Grid Grid.Row="0" Padding="25,40,25,20">
+        <Grid Grid.Row="0" Padding="25,40,25,20" x:Name="HeaderGrid">
             <ImageButton Source="nazad.png"
                          WidthRequest="38"
                          HeightRequest="38"
@@ -26,7 +26,7 @@
         </Grid>
 
         <!-- Sadržaj korpe -->
-        <ScrollView Grid.Row="1" Padding="25,0">
+        <ScrollView Grid.Row="1" Padding="25,0" x:Name="MainScrollView">
             <VerticalStackLayout Spacing="15">
 
                 <!-- Poruka ako je korpa prazna -->
@@ -40,119 +40,213 @@
                        Margin="0,50,0,0"
                        IsVisible="False"/>
 
-                <!-- Lista stavki -->
-                <CollectionView x:Name="KorpaCollectionView"
-                                SelectionMode="None">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="15"
-                                  BackgroundColor="#2E2E2C"
-                                  Margin="0,5"
-                                  RowDefinitions="Auto,Auto"
-                                  ColumnDefinitions="80,*,Auto">
+                <!-- Lista stavki - Prvi korak -->
+                <VerticalStackLayout x:Name="KorpaStavkeContainer" IsVisible="True">
+                    <CollectionView x:Name="KorpaCollectionView"
+                                    SelectionMode="None">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="15"
+                                      BackgroundColor="#2E2E2C"
+                                      Margin="0,5"
+                                      RowDefinitions="Auto,Auto"
+                                      ColumnDefinitions="80,*,Auto">
 
-                                <!-- X dugme za brisanje - Desni gornji ugao -->
-                                <Button Grid.Row="0"
-                                        Grid.Column="2"
-                                        Text="X"
-                                        FontFamily="LeagueSpartan"
-                                        FontSize="18"
-                                        FontAttributes="Bold"
-                                        TextColor="#EBC036"
-                                        BackgroundColor="Transparent"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        Padding="0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Start"
-                                        Clicked="OnUkloniStavku"
-                                        CommandParameter="{Binding ArtikalId}"/>
-
-                                <!-- Slika -->
-                                <Image Grid.Row="0"
-                                       Grid.RowSpan="2"
-                                       Grid.Column="0"
-                                       Source="{Binding Slika}"
-                                       Aspect="AspectFill"
-                                       WidthRequest="70"
-                                       HeightRequest="70"
-                                       Margin="0,0,10,0"/>
-
-                                <!-- Naziv -->
-                                <Label Grid.Row="0"
-                                       Grid.Column="1"
-                                       Text="{Binding Naziv}"
-                                       FontFamily="LeagueSpartan"
-                                       FontAttributes="Bold"
-                                       FontSize="18"
-                                       TextColor="#EFCD5E"
-                                       VerticalOptions="Center"
-                                       Margin="0,0,40,0"/>
-
-                                <!-- Cijena x Količina -->
-                                <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       FontFamily="LeagueSpartan"
-                                       FontSize="16"
-                                       TextColor="#FFFFFD"
-                                       VerticalOptions="Center">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="{Binding Cijena, StringFormat='{0:F2} KM'}"/>
-                                            <Span Text=" x "/>
-                                            <Span Text="{Binding Kolicina}"/>
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-
-                                <!-- Kontrole količine -->
-                                <HorizontalStackLayout Grid.Row="1"
-                                                       Grid.Column="2"
-                                                       Spacing="10"
-                                                       VerticalOptions="Center"
-                                                       HorizontalOptions="End">
-
-                                    <Button Text="-"
+                                    <!-- X dugme za brisanje -->
+                                    <Button Grid.Row="0"
+                                            Grid.Column="2"
+                                            Text="X"
                                             FontFamily="LeagueSpartan"
-                                            FontSize="20"
+                                            FontSize="18"
                                             FontAttributes="Bold"
-                                            TextColor="#FFFFFD"
-                                            BackgroundColor="#EFCD5E"
-                                            WidthRequest="40"
-                                            HeightRequest="40"
-                                            CornerRadius="20"
-                                            Clicked="OnSmanjiKolicinu"
+                                            TextColor="#EBC036"
+                                            BackgroundColor="Transparent"
+                                            WidthRequest="30"
+                                            HeightRequest="30"
+                                            Padding="0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Start"
+                                            Clicked="OnUkloniStavku"
                                             CommandParameter="{Binding ArtikalId}"/>
 
-                                    <Label Text="{Binding Kolicina}"
+                                    <!-- Slika -->
+                                    <Image Grid.Row="0"
+                                           Grid.RowSpan="2"
+                                           Grid.Column="0"
+                                           Source="{Binding Slika}"
+                                           Aspect="AspectFill"
+                                           WidthRequest="70"
+                                           HeightRequest="70"
+                                           Margin="0,0,10,0"/>
+
+                                    <!-- Naziv -->
+                                    <Label Grid.Row="0"
+                                           Grid.Column="1"
+                                           Text="{Binding Naziv}"
                                            FontFamily="LeagueSpartan"
-                                           FontSize="20"
                                            FontAttributes="Bold"
-                                           TextColor="#FFFFFD"
+                                           FontSize="18"
+                                           TextColor="#EFCD5E"
                                            VerticalOptions="Center"
-                                           WidthRequest="30"
-                                           HorizontalTextAlignment="Center"/>
+                                           Margin="0,0,40,0"/>
 
-                                    <Button Text="+"
-                                            FontFamily="LeagueSpartan"
-                                            FontSize="20"
-                                            FontAttributes="Bold"
-                                            TextColor="#FFFFFD"
-                                            BackgroundColor="#EFCD5E"
-                                            WidthRequest="40"
-                                            HeightRequest="40"
-                                            CornerRadius="20"
-                                            Clicked="OnPovecajKolicinu"
-                                            CommandParameter="{Binding ArtikalId}"/>
-                                </HorizontalStackLayout>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                    <!-- Cijena x Količina -->
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           FontFamily="LeagueSpartan"
+                                           FontSize="16"
+                                           TextColor="#FFFFFD"
+                                           VerticalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Cijena, StringFormat='{0:F2} KM'}"/>
+                                                <Span Text=" x "/>
+                                                <Span Text="{Binding Kolicina}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <!-- Kontrole količine -->
+                                    <HorizontalStackLayout Grid.Row="1"
+                                                           Grid.Column="2"
+                                                           Spacing="10"
+                                                           VerticalOptions="Center"
+                                                           HorizontalOptions="End">
+
+                                        <Button Text="-"
+                                                FontFamily="LeagueSpartan"
+                                                FontSize="20"
+                                                FontAttributes="Bold"
+                                                TextColor="#FFFFFD"
+                                                BackgroundColor="#EFCD5E"
+                                                WidthRequest="40"
+                                                HeightRequest="40"
+                                                CornerRadius="20"
+                                                Clicked="OnSmanjiKolicinu"
+                                                CommandParameter="{Binding ArtikalId}"/>
+
+                                        <Label Text="{Binding Kolicina}"
+                                               FontFamily="LeagueSpartan"
+                                               FontSize="20"
+                                               FontAttributes="Bold"
+                                               TextColor="#FFFFFD"
+                                               VerticalOptions="Center"
+                                               WidthRequest="30"
+                                               HorizontalTextAlignment="Center"/>
+
+                                        <Button Text="+"
+                                                FontFamily="LeagueSpartan"
+                                                FontSize="20"
+                                                FontAttributes="Bold"
+                                                TextColor="#FFFFFD"
+                                                BackgroundColor="#EFCD5E"
+                                                WidthRequest="40"
+                                                HeightRequest="40"
+                                                CornerRadius="20"
+                                                Clicked="OnPovecajKolicinu"
+                                                CommandParameter="{Binding ArtikalId}"/>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <!-- Forma za dostavu - Drugi korak -->
+                <VerticalStackLayout x:Name="DostavaFormaContainer" 
+                                     IsVisible="False" 
+                                     Spacing="20"
+                                     Padding="0,20">
+
+                    <!-- Dostava Row -->
+                    <Grid ColumnDefinitions="Auto,60,*" 
+                          ColumnSpacing="15"
+                          Margin="0,0,0,0">
+
+                        <!-- Label Dostava -->
+                        <Label Grid.Column="0"
+                               Text="Dostava:"
+                               FontFamily="LeagueSpartan"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFD"
+                               VerticalOptions="Center"/>
+
+                        <!-- Checkbox -->
+                        <Grid Grid.Column="1"
+                              WidthRequest="50"
+                              HeightRequest="50"
+                              VerticalOptions="Center">
+
+                            <Border BackgroundColor="Transparent"
+                                    Stroke="#D6AF31"
+                                    StrokeThickness="2"
+                                    StrokeShape="RoundRectangle 8">
+                                <Grid>
+                                    <BoxView Color="Transparent"/>
+                                </Grid>
+                            </Border>
+
+                            <Image x:Name="CheckImage"
+                                   Source="check.png"
+                                   IsVisible="False"
+                                   Margin="5"/>
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnCheckboxTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!-- Textarea za adresu -->
+                        <Border Grid.Column="2"
+                                Stroke="#D6AF31"
+                                StrokeThickness="2"
+                                BackgroundColor="#2E2E2C"
+                                StrokeShape="RoundRectangle 8"
+                                VerticalOptions="Center">
+                            <Editor x:Name="AdresaEditor"
+                                    Placeholder="Unesite adresu dostave..."
+                                    PlaceholderColor="#808080"
+                                    TextColor="#FFFFFD"
+                                    FontFamily="LeagueSpartan"
+                                    FontSize="16"
+                                    HeightRequest="80"
+                                    Margin="10"
+                                    IsEnabled="False"
+                                    AutoSize="TextChanges"/>
+                        </Border>
+                    </Grid>
+
+                    <!-- Napomena -->
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="Napomena:"
+                               FontFamily="LeagueSpartan"
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               TextColor="#FFFFFD"/>
+
+                        <Border Stroke="#D6AF31"
+                                StrokeThickness="2"
+                                BackgroundColor="#2E2E2C"
+                                StrokeShape="RoundRectangle 8">
+                            <Editor x:Name="NapomenaEditor"
+                                    Placeholder="Npr. bez majoneze..."
+                                    PlaceholderColor="#808080"
+                                    TextColor="#FFFFFD"
+                                    FontFamily="LeagueSpartan"
+                                    FontSize="16"
+                                    HeightRequest="100"
+                                    Margin="10"
+                                    AutoSize="TextChanges"/>
+                        </Border>
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Footer sa ukupnom cijenom i dugmetom -->
+        <!-- Footer -->
         <Grid Grid.Row="2"
               BackgroundColor="#2E2E2C"
               Padding="25,20"
@@ -175,7 +269,20 @@
                 </Label.FormattedText>
             </Label>
 
-            <!-- Potvrdi narudžbu dugme -->
+            <!-- Dugmad -->
+            <Button Grid.Row="1"
+                    x:Name="DaljeButton"
+                    Text="DALJE"
+                    FontFamily="LeagueSpartan"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    TextColor="#2E2E2C"
+                    BackgroundColor="#EFCD5E"
+                    CornerRadius="25"
+                    HeightRequest="55"
+                    Clicked="OnDaljeClicked"
+                    IsVisible="True"/>
+
             <Button Grid.Row="1"
                     x:Name="PotvrdiButton"
                     Text="POTVRDI NARUDŽBU"
@@ -186,7 +293,64 @@
                     BackgroundColor="#EFCD5E"
                     CornerRadius="25"
                     HeightRequest="55"
-                    Clicked="OnPotvrdiNarudzbu"/>
+                    Clicked="OnPotvrdiNarudzbu"
+                    IsVisible="False"/>
         </Grid>
+
+        <!-- SUCCESS SCREEN - Preko svega -->
+        <Grid Grid.RowSpan="3" 
+              x:Name="SuccessOverlay"
+              IsVisible="False">
+
+            <!-- Background slika -->
+            <Image Source="background.png"
+                   Aspect="AspectFill"/>
+
+            <!-- Centralni sadržaj -->
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 VerticalOptions="Center"
+                                 Spacing="30">
+
+                <!-- Krug sa check ikonom -->
+                <Grid WidthRequest="180"
+                      HeightRequest="180"
+                      HorizontalOptions="Center">
+
+                    <!-- Krug sa border-om -->
+                    <Ellipse Fill="#323230"
+                             Stroke="#D6AF31"
+                             StrokeThickness="4"
+                             WidthRequest="180"
+                             HeightRequest="180"/>
+
+                    <!-- Check ikona -->
+                    <Image Source="check.png"
+                           WidthRequest="150"
+                           HeightRequest="150"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+                </Grid>
+
+                <!-- Tekst "NARUDZBA USPJEŠNA" -->
+                <Label HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="NARUDŽBA" 
+                                  FontFamily="BebasNeue" 
+                                  FontSize="64" 
+                                  TextColor="#D6AF31"/>
+                            <Span Text="&#x0a;"/>
+                            <Span Text="USPJEŠNA" 
+                                  FontFamily="BebasNeue" 
+                                  FontSize="64" 
+                                  TextColor="#D6AF31"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </VerticalStackLayout>
+        </Grid>
+
     </Grid>
 </ContentPage>

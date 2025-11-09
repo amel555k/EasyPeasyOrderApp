@@ -12,7 +12,7 @@
 				   HorizontalOptions="Fill"
 				   VerticalOptions="Fill"/>
 		<VerticalStackLayout
-            Padding="25,40"
+            Padding="15,40"
             Spacing="35"
             HorizontalOptions="Center"
             VerticalOptions="Start">
@@ -89,8 +89,8 @@
 					<!-- Lijevi dio: kontakt info -->
 					<VerticalStackLayout
                         Grid.Column="0"
-                        Padding="20"
-                        Spacing="12"
+                        Padding="8"
+                        Spacing="15"
                         HorizontalOptions="Start"
                         VerticalOptions="Center">
 
@@ -121,6 +121,7 @@
 
 					<!-- Razdjelna linija -->
 					<BoxView Grid.Column="1"
+                             Margin="90,0,5,0"
                              WidthRequest="2"
                              Color="#EFCD5E"
                              VerticalOptions="FillAndExpand"/>

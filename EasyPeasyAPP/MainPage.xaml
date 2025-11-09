@@ -4,7 +4,7 @@
              x:Class="EasyPeasyAPP.MainPage"
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="Transparent">
-
+    
     <Grid>
         <!-- Pozadinska slika -->
         <Image Source="background.png" Aspect="AspectFill"/>
@@ -20,7 +20,7 @@
                    WidthRequest="250"
                    HeightRequest="250"
                    HorizontalOptions="Center"
-                   Margin="0,0,0,25"/>
+                   Margin="0,-60,0,10"/>
 
             <!-- === NARUČI Button === -->
             <Border BackgroundColor="#EBC036"
@@ -59,7 +59,7 @@
             <!-- === HISTORIJA NARUDŽBI Button === -->
             <Border BackgroundColor="#EBC036"
                     HeightRequest="57"
-                    WidthRequest="276"
+                    WidthRequest="250"
                     StrokeThickness="0"
                     HorizontalOptions="Center">
                 <Border.StrokeShape>
@@ -79,13 +79,8 @@
                            FontSize="33"
                            TextColor="#5B5B59"
                            VerticalOptions="Center"
-                           HorizontalOptions="Start"/>
-                    <Image Source="history.png"
-                           Grid.Column="1"
-                           WidthRequest="34"
-                           HeightRequest="34"
-                           VerticalOptions="Center"
-                           HorizontalOptions="End"/>
+                           HorizontalOptions="Center"/>
+                    
                 </Grid>
             </Border>
 
@@ -159,10 +154,10 @@
 
             <!-- === Logout Button === -->
             <Border BackgroundColor="#EBC036"
-                    HeightRequest="62"
+                    HeightRequest="55"
                     WidthRequest="82"
                     StrokeThickness="0"
-                    Margin="0,25,0,0"
+                    Margin="0,0,0,0"
                     HorizontalOptions="Center">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="12"/>
@@ -179,5 +174,6 @@
             </Border>
 
         </VerticalStackLayout>
-    </Grid>
+        </Grid>
+    
 </ContentPage>

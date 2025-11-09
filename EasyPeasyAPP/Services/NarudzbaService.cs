@@ -22,7 +22,11 @@ namespace EasyPeasyAPP.Services
         }
 
         // Kreiranje nove narudžbe
-        public async Task<NarudzbaModel> KreirajNarudzbuAsync(UserModel korisnik, List<KorpaStavka> stavke)
+        public async Task<NarudzbaModel> KreirajNarudzbuAsync(
+            UserModel korisnik,
+            List<KorpaStavka> stavke,
+            string adresaDostave = null,
+            string napomena = null)
         {
             if (stavke == null || !stavke.Any())
                 throw new Exception("Korpa je prazna.");
@@ -41,7 +45,9 @@ namespace EasyPeasyAPP.Services
                 Datum = DateTime.Now,
                 Status = "nova",
                 Ukupno = stavke.Sum(s => s.Ukupno),
-                Stavke = stavke.ToList() // direktno koristimo KorpaStavka
+                Stavke = stavke.ToList(),
+                AdresaDostave = adresaDostave ?? "",
+                Napomena = napomena ?? ""
             };
 
             var token = await SecureStorage.Default.GetAsync("auth_token");
@@ -82,7 +88,7 @@ namespace EasyPeasyAPP.Services
                 .ToList() ?? new List<NarudzbaModel>();
         }
 
-        // Promjena statusa narudžbe (opcionalno)
+        // Promjena statusa narudžbe
         public async Task<bool> PromijeniStatusNarudzbeAsync(string narudzbaId, string noviStatus)
         {
             var token = await SecureStorage.Default.GetAsync("auth_token");
