@@ -64,6 +64,7 @@ namespace EasyPeasyAPP
                 await _authService.LogoutAsync();
                 Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
+
         }
     }
 }

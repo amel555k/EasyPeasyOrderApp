@@ -22,17 +22,6 @@
         ContentTemplate="{DataTemplate pages:OrderPage}"
         Route="OrderPage" />
 
-    <!-- Burger Page -->
-    <ShellContent
-        Title="Burgeri"
-        ContentTemplate="{DataTemplate pages:BurgerPage}"
-        Route="BurgerPage" />
-
-    <!-- Dogs Page -->
-    <ShellContent
-        Title="Hot Dogs"
-        ContentTemplate="{DataTemplate pages:DogsPage}"
-        Route="DogsPage" />
 
     <!-- About Page -->
     <ShellContent
@@ -40,24 +29,7 @@
         ContentTemplate="{DataTemplate pages:AboutPage}"
         Route="AboutPage" />
 
-    <!-- Sokovi Page -->
-    <ShellContent
-        Title="Sokovi"
-        ContentTemplate="{DataTemplate pages:SokoviPage}"
-        Route="SokoviPage" />
-
-    <!-- Prilozi Page -->
-    <ShellContent
-        Title="Prilozi"
-        ContentTemplate="{DataTemplate pages:PriloziPage}"
-        Route="PriloziPage" />
-
-    <!-- Sendvici Page -->
-    <ShellContent
-        Title="Sendvici"
-        ContentTemplate="{DataTemplate pages:SendviciPage}"
-        Route="SendviciPage" />
-
+   
     <!-- Profile Page -->
     <ShellContent
         Title="Profil"

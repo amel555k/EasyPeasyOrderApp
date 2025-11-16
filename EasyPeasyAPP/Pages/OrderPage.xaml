@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EasyPeasyAPP.Pages"
              x:Class="EasyPeasyAPP.Pages.OrderPage"
              BackgroundColor="#1A1A1A"
              NavigationPage.HasNavigationBar="False">
@@ -8,230 +9,262 @@
     <Grid>
         <!-- Background -->
         <Image Source="background.png"
-			   Aspect="AspectFill"
-			   HorizontalOptions="Fill"
-			   VerticalOptions="Fill"/>
+               Aspect="AspectFill"
+               HorizontalOptions="Fill"
+               VerticalOptions="Fill"/>
 
-        <ScrollView>
+        <!-- === GLAVNI MENI === -->
+        <ScrollView x:Name="MainMenuContent">
             <VerticalStackLayout
-				Padding="25,40"
-				Spacing="35"
-				HorizontalOptions="FillAndExpand"
-				VerticalOptions="Start">
+                Padding="25,40"
+                Spacing="35"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
 
                 <!-- === Header (Nazad + PONUDA + Korpa) === -->
                 <Grid ColumnDefinitions="Auto,*,Auto"
-					  HorizontalOptions="FillAndExpand"
-					  VerticalOptions="Center"
-					  HeightRequest="70"
-					  Margin="0,0,0,0">
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Center"
+                      HeightRequest="70"
+                      Margin="0,0,0,0">
 
-                    <!-- Nazad dugme -->
                     <ImageButton Grid.Column="0"
-								 Source="nazad.png"
-								 WidthRequest="38"
-								 HeightRequest="38"
-								 BackgroundColor="Transparent"
-								 Clicked="OnBackClicked"
-								 HorizontalOptions="Start"
-								 VerticalOptions="Center"
-								 Margin="0,0,10,0"/>
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
 
-                    <!-- Centrirani tekst PONUDA -->
                     <Label Grid.Column="1"
-						   Text="PONUDA"
-						   FontFamily="BebasNeue"
-						   FontSize="64"
-						   TextColor="#EFCD5E"
-						   HorizontalOptions="Center"
-						   VerticalOptions="Center"
-						   HorizontalTextAlignment="Center"
-						   LineBreakMode="NoWrap"/>
+                           Text="PONUDA"
+                           FontFamily="BebasNeue"
+                           FontSize="64"
+                           TextColor="#EFCD5E"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="NoWrap"/>
 
-                    <!-- Korpa dugme -->
                     <ImageButton Grid.Column="2"
-								 Source="korpica.png"
-								 WidthRequest="38"
-								 HeightRequest="38"
-								 BackgroundColor="Transparent"
-								 Clicked="OnKorpaClicked"
-								 HorizontalOptions="End"
-								 VerticalOptions="Center"
-								 Margin="10,0,0,0"/>
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
                 </Grid>
 
-                <!-- === EASY BURGERI Button === -->
-                <Border BackgroundColor="#EBC036"
-						HeightRequest="65"
-						StrokeThickness="0"
-						HorizontalOptions="FillAndExpand"
-						Margin="10,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnBurgeriClicked"/>
-                    </Border.GestureRecognizers>
+                <!-- === DINAMIČKA LISTA KATEGORIJA === -->
+                <CollectionView ItemsSource="{Binding Kategorije} "
+                                SelectionMode="None">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BackgroundColor="#EBC036"
+                                    HeightRequest="65"
+                                    StrokeThickness="0"
+                                    HorizontalOptions="FillAndExpand"
+                                    Margin="10,30,10,0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12"/>
+                                </Border.StrokeShape>
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:OrderPage}}, Path=OtvoriKategorijuCommand}"
+                                        CommandParameter="{Binding .}"/>
+                                </Border.GestureRecognizers>
 
-                    <Grid ColumnDefinitions="*,Auto"
-						  Padding="20,0"
-						  VerticalOptions="Center"
-						  HorizontalOptions="FillAndExpand">
-                        <Label Text="EASY BURGERI"
-							   Grid.Column="0"
-							   FontFamily="BebasNeue"
-							   FontSize="40"
-							   TextColor="#5B5B59"
-							   VerticalOptions="Center"
-							   HorizontalOptions="Start"
-							   Margin="0,0,15,0"/>
-                        <Image Source="burger.png"
-							   Grid.Column="1"
-							   WidthRequest="40"
-							   HeightRequest="40"
-							   VerticalOptions="Center"
-							   HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === EASY DOGS Button === -->
-                <Border BackgroundColor="#EBC036"
-						HeightRequest="65"
-						StrokeThickness="0"
-						HorizontalOptions="FillAndExpand"
-						Margin="10,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnDogsClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-						  Padding="20,0"
-						  VerticalOptions="Center"
-						  HorizontalOptions="FillAndExpand">
-                        <Label Text="EASY DOGS"
-							   Grid.Column="0"
-							   FontFamily="BebasNeue"
-							   FontSize="40"
-							   TextColor="#5B5B59"
-							   VerticalOptions="Center"
-							   HorizontalOptions="Start"
-							   Margin="0,0,15,0"/>
-                        <Image Source="hotdog.png"
-							   Grid.Column="1"
-							   WidthRequest="40"
-							   HeightRequest="40"
-							   VerticalOptions="Center"
-							   HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === SENDVIČI Button === -->
-                <Border BackgroundColor="#EBC036"
-						HeightRequest="65"
-						StrokeThickness="0"
-						HorizontalOptions="FillAndExpand"
-						Margin="10,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSendviciClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-						  Padding="20,0"
-						  VerticalOptions="Center"
-						  HorizontalOptions="FillAndExpand">
-                        <Label Text="SENDVIČI"
-							   Grid.Column="0"
-							   FontFamily="BebasNeue"
-							   FontSize="40"
-							   TextColor="#5B5B59"
-							   VerticalOptions="Center"
-							   HorizontalOptions="Start"
-							   Margin="0,0,15,0"/>
-                        <Image Source="sendvic.png"
-							   Grid.Column="1"
-							   WidthRequest="40"
-							   HeightRequest="40"
-							   VerticalOptions="Center"
-							   HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === SOKOVI Button === -->
-                <Border BackgroundColor="#EBC036"
-						HeightRequest="65"
-						StrokeThickness="0"
-						HorizontalOptions="FillAndExpand"
-						Margin="10,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnSokoviClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-						  Padding="20,0"
-						  VerticalOptions="Center"
-						  HorizontalOptions="FillAndExpand">
-                        <Label Text="SOKOVI"
-							   Grid.Column="0"
-							   FontFamily="BebasNeue"
-							   FontSize="40"
-							   TextColor="#5B5B59"
-							   VerticalOptions="Center"
-							   HorizontalOptions="Start"
-							   Margin="0,0,15,0"/>
-                        <Image Source="sokovi.png"
-							   Grid.Column="1"
-							   WidthRequest="40"
-							   HeightRequest="40"
-							   VerticalOptions="Center"
-							   HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
-
-                <!-- === PRILOZI Button === -->
-                <Border BackgroundColor="#EBC036"
-						HeightRequest="65"
-						StrokeThickness="0"
-						HorizontalOptions="FillAndExpand"
-						Margin="10,0">
-                    <Border.StrokeShape>
-                        <RoundRectangle CornerRadius="12"/>
-                    </Border.StrokeShape>
-                    <Border.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="OnPriloziClicked"/>
-                    </Border.GestureRecognizers>
-
-                    <Grid ColumnDefinitions="*,Auto"
-						  Padding="20,0"
-						  VerticalOptions="Center"
-						  HorizontalOptions="FillAndExpand">
-                        <Label Text="PRILOZI"
-							   Grid.Column="0"
-							   FontFamily="BebasNeue"
-							   FontSize="40"
-							   TextColor="#5B5B59"
-							   VerticalOptions="Center"
-							   HorizontalOptions="Start"
-							   Margin="0,0,15,0"/>
-                        <Image Source="prilozi.png"
-							   Grid.Column="1"
-							   WidthRequest="40"
-							   HeightRequest="40"
-							   VerticalOptions="Center"
-							   HorizontalOptions="End"/>
-                    </Grid>
-                </Border>
+                                <Grid ColumnDefinitions="*,Auto"
+                                      Padding="20,0"
+                                      VerticalOptions="Center"
+                                      HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Naziv}"
+                                           Grid.Column="0"
+                                           FontFamily="BebasNeue"
+                                           FontSize="40"
+                                           TextColor="#5B5B59"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           Margin="0,0,15,0"/>
+                                    <Image Source="{Binding Ikonica}"
+                                           Grid.Column="1"
+                                           WidthRequest="40"
+                                           HeightRequest="40"
+                                           VerticalOptions="Center"
+                                           HorizontalOptions="End"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
             </VerticalStackLayout>
         </ScrollView>
-    </Grid>
 
+        <!-- === SADRŽAJ KATEGORIJE (UNIVERZALNI) === -->
+        <ScrollView x:Name="KategorijaContent" IsVisible="False">
+            <VerticalStackLayout
+                Padding="25,40"
+                Spacing="25"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+
+                <!-- === Header === -->
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="Center"
+                      HeightRequest="70">
+
+                    <ImageButton Grid.Column="0"
+                                 Source="nazad.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKategorijaBackClicked"
+                                 HorizontalOptions="Start"
+                                 VerticalOptions="Center"
+                                 Margin="0,0,10,0"/>
+
+                    <BoxView Grid.Column="1" BackgroundColor="Transparent"/>
+
+                    <ImageButton Grid.Column="2"
+                                 Source="korpica.png"
+                                 WidthRequest="38"
+                                 HeightRequest="38"
+                                 BackgroundColor="Transparent"
+                                 Clicked="OnKorpaClicked"
+                                 HorizontalOptions="End"
+                                 VerticalOptions="Center"
+                                 Margin="10,0,0,0"/>
+                </Grid>
+
+                <!-- === Naslov kategorije === -->
+                <AbsoluteLayout HeightRequest="100"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="Start"
+                                Margin="0,-100,0,0">
+                    <Label x:Name="KategorijaNaslov"
+                           FontFamily="BebasNeue"
+                           FontSize="64"
+                           TextColor="#EFCD5E"
+                           Text=""
+                           HorizontalTextAlignment="Center"
+                           AbsoluteLayout.LayoutBounds="0.5,0,AutoSize,AutoSize"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"
+                           VerticalOptions="Start"/>
+                </AbsoluteLayout>
+
+                <!-- === Container za dinamičke artikle === -->
+                <VerticalStackLayout x:Name="ArtikliWrapper" Margin="0,40,0,0">
+                    <!-- Grid 2x2 za prve 4 artikla -->
+                    <Grid x:Name="ArtikliGrid"
+                          RowDefinitions="Auto,Auto"
+                          ColumnDefinitions="*,*"
+                          RowSpacing="20"
+                          ColumnSpacing="15"
+                          HorizontalOptions="FillAndExpand">
+                        <!-- Dinamički generisano -->
+                    </Grid>
+
+                    <!-- Container za 5. artikal (centriran) -->
+                    <StackLayout x:Name="PetiArtikalContainer"
+                                 Orientation="Horizontal"
+                                 HorizontalOptions="Center"
+                                 Margin="0,5,0,0">
+                        <!-- Dinamički generisano -->
+                    </StackLayout>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- === DETAIL PANEL === -->
+        <Border x:Name="DetailPanel"
+                BackgroundColor="#EBC036"
+                Stroke="#767674"
+                StrokeThickness="6"
+                VerticalOptions="End"
+                HeightRequest="{OnPlatform Android=450, iOS=430, WinUI=490}"
+                TranslationY="800"
+                IsVisible="False"
+                Margin="0"
+                ZIndex="2">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="30,30,0,0"/>
+            </Border.StrokeShape>
+
+            <ScrollView Padding="20,10,20,30">
+                <VerticalStackLayout x:Name="DetailContent" Spacing="12" Margin="0,130,0,0">
+
+                    <Label x:Name="ItemNameLabel"
+                           Text="Easy Crunchy Burger"
+                           FontFamily="LeagueSpartan"
+                           FontAttributes="Bold"
+                           FontSize="30"
+                           TextColor="#2E2E2C"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+
+                    <Label x:Name="ItemIngredientsLabel"
+                           FontFamily="LeagueSpartan"
+                           FontSize="23"
+                           TextColor="#FFFFFD"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           LineBreakMode="WordWrap"
+                           Margin="15,0,15,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Sastojci: pljeskavica, zelena salata, easy peasy umak od luka"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label x:Name="ItemPriceLabel"
+                           FontFamily="LeagueSpartan"
+                           FontAttributes="Bold"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="0,8,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="CIJENA: " TextColor="#FFFFFD"/>
+                                <Span Text="7KM" TextColor="#2E2E2C"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Button x:Name="AddToCartButton"
+                            Text="Dodaj u korpu"
+                            FontFamily="LeagueSpartan"
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            TextColor="#FFFFFD"
+                            BackgroundColor="#2E2E2C"
+                            CornerRadius="25"
+                            HeightRequest="55"
+                            WidthRequest="250"
+                            HorizontalOptions="Center"
+                            Margin="0,20,0,0"
+                            Clicked="OnAddToCartClicked"/>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Border>
+
+        <!-- === Floating item image === -->
+        <Image x:Name="FloatingItem"
+               Source="burger1.png"
+               Aspect="AspectFill"
+               HeightRequest="250"
+               WidthRequest="250"
+               HorizontalOptions="Center"
+               VerticalOptions="Start"
+               IsVisible="False"
+               ZIndex="5"/>
+    </Grid>
 </ContentPage>

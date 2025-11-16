@@ -33,11 +33,6 @@ namespace EasyPeasyAPP
             builder.Services.AddTransient<ProfilePage>();
             builder.Services.AddTransient<OrderPage>();
             builder.Services.AddTransient<AboutPage>();
-            builder.Services.AddTransient<SendviciPage>();
-            builder.Services.AddTransient<BurgerPage>();
-            builder.Services.AddTransient<DogsPage>();
-            builder.Services.AddTransient<SokoviPage>();
-            builder.Services.AddTransient<PriloziPage>();
             builder.Services.AddTransient<KorpaPage>();
 
 #if DEBUG
