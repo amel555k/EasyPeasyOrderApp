@@ -7,8 +7,8 @@ namespace EasyPeasyAPP.Services
 {
     public class AuthService : IAuthService
     {
-        private const string FIREBASE_API_KEY = "***REMOVED***";
-        private const string FIREBASE_DB_URL = "***REMOVED***";
+        private const string FIREBASE_API_KEY = Secrets.Key;
+        private const string FIREBASE_DB_URL = Secrets.URL;
 
         private readonly HttpClient _httpClient;
         private string? _idToken;

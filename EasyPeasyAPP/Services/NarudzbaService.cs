@@ -11,7 +11,7 @@ namespace EasyPeasyAPP.Services
 {
     public class NarudzbaService : INarudzbaService
     {
-        private const string FIREBASE_DB_URL = "***REMOVED***";
+        private const string FIREBASE_DB_URL = "https://easypeasyapp-19efb-default-rtdb.europe-west1.firebasedatabase.app/";
         private readonly HttpClient _httpClient;
         private readonly IAuthService _authService;
 

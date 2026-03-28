@@ -4,7 +4,7 @@ obj/
 *.user
 *.suo
 .vs/
-
+**/Secrets.cs
 ## MAUI
 **/AppPackages/
 **/BundleArtifacts/
